@@ -11,7 +11,7 @@ import { BANKS, type Bank } from "@/lib/data";
 import { hrefFor } from "@/lib/routes";
 
 export const metadata = {
-  title: "Steckbriefe — Zehn Banken, zehn klare Winkel | neoradar.de",
+  title: "Steckbriefe: Zehn Banken, zehn klare Winkel | neoradar.de",
 };
 
 function BankCard({ b }: { b: Bank }) {
@@ -57,7 +57,7 @@ export default function SteckbriefePage() {
         <PageHead
           kicker="Steckbriefe"
           title="Zehn Banken, zehn klare Winkel."
-          lead="Jede Bank bekommt bei uns einen eigenen redaktionellen Blick — mit ehrlichem „Für wen nicht“ statt Hochglanz-Prosa."
+          lead="Jede Bank bekommt bei uns einen eigenen redaktionellen Blick, mit ehrlichem „Für wen nicht“ statt Hochglanz-Prosa."
         />
       </Container>
       <Container className="pb-20">

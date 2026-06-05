@@ -1,12 +1,15 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV } from "@/lib/data";
 import { hrefFor } from "@/lib/routes";
 import { Container, LiveDot } from "./ui";
+import { Icon } from "./icons";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
   const isActive = (id: string) => {
     if (id === "vergleich") return pathname.startsWith("/vergleich");
     if (id === "banken") return pathname.startsWith("/steckbrief");
@@ -67,7 +70,41 @@ export function SiteHeader() {
               );
             })}
           </nav>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="md:hidden grid place-items-center -mr-1 h-11 w-11 rounded-xl"
+            style={{ color: "var(--h-ink)" }}
+            aria-label={open ? "Menü schließen" : "Menü öffnen"}
+            aria-expanded={open}
+          >
+            <Icon name={open ? "x" : "menu"} size={24} />
+          </button>
         </Container>
+        {open && (
+          <div className="md:hidden" style={{ borderTop: "1px solid var(--h-line)", background: "var(--h-card)" }}>
+            <Container className="py-2 flex flex-col">
+              {NAV.map((l) => {
+                const active = isActive(l.id);
+                return (
+                  <Link
+                    key={l.id}
+                    href={hrefFor(l.id)}
+                    onClick={() => setOpen(false)}
+                    className="py-3.5 text-[17px] transition-opacity hover:opacity-60"
+                    style={{
+                      color: active ? "var(--h-ink)" : "var(--h-muted)",
+                      fontWeight: active ? 700 : 500,
+                      borderBottom: "1px solid var(--h-line)",
+                    }}
+                  >
+                    {l.label}
+                  </Link>
+                );
+              })}
+            </Container>
+          </div>
+        )}
       </div>
     </header>
   );

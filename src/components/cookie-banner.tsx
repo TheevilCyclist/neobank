@@ -8,7 +8,7 @@ const COOKIE = "neoradar-consent";
 const MAX_AGE = 60 * 60 * 24 * 180; // 180 Tage
 const OPEN_EVENT = "neoradar:open-cookie-settings";
 
-// Read the cookie (external, non-React state) during render — no effect needed.
+// Read the cookie (external, non-React state) during render, no effect needed.
 const subscribe = () => () => {};
 const hasConsentClient = () =>
   document.cookie.split("; ").some((c) => c.startsWith(COOKIE + "="));
@@ -189,8 +189,8 @@ export function CookieBanner() {
                     className="mt-1 text-[13.5px] leading-relaxed"
                     style={{ color: "var(--h-muted)" }}
                   >
-                    Wir verwenden notwendige Cookies für den Betrieb der Seite und — nur mit deiner
-                    Einwilligung — Google Analytics, um die Nutzung zu verstehen. Du kannst deine
+                    Wir verwenden notwendige Cookies für den Betrieb der Seite und, nur mit deiner
+                    Einwilligung, Google Analytics, um die Nutzung zu verstehen. Du kannst deine
                     Wahl jederzeit ändern. Mehr in der{" "}
                     <Link
                       href="/datenschutz"

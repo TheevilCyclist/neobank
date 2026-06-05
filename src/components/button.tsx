@@ -26,7 +26,7 @@ const STYLES: Record<Kind, CSSProperties> = {
 };
 
 const BASE =
-  "inline-flex items-center gap-2 text-[15px] font-semibold whitespace-nowrap transition-all px-6 hover:brightness-105 active:brightness-95";
+  "inline-flex items-center gap-2 text-[16px] font-semibold whitespace-nowrap transition-all px-7 hover:brightness-105 active:brightness-95";
 
 export function Btn({
   kind = "primary",
@@ -45,12 +45,12 @@ export function Btn({
   icon?: IconName | null;
   iconLeft?: IconName;
 }) {
-  const style: CSSProperties = { height: "52px", ...STYLES[kind] };
+  const style: CSSProperties = { height: "56px", ...STYLES[kind] };
   const inner = (
     <>
-      {iconLeft && <Icon name={iconLeft} size={16} />}
+      {iconLeft && <Icon name={iconLeft} size={18} />}
       {children}
-      {!iconLeft && icon && <Icon name={icon} size={17} />}
+      {!iconLeft && icon && <Icon name={icon} size={18} />}
     </>
   );
   if (href) {

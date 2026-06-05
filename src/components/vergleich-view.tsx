@@ -105,7 +105,7 @@ export function VergleichView() {
         <PageHead
           kicker="Die Vergleichsmatrix"
           title="Zehn Banken, zwei Welten. Ein ehrlicher Blick."
-          lead="Sieben Neobanken treffen auf drei digitale Klassiker. Wir vergleichen nicht den Preis im Schaufenster, sondern was im Alltag zählt: die dritte Bargeldabhebung, die Einlagensicherung — und welcher Zins auch nach dem Neukunden-Halbjahr noch gilt."
+          lead="Sieben Neobanken treffen auf drei digitale Klassiker. Wir vergleichen nicht den Preis im Schaufenster, sondern was im Alltag zählt: die dritte Bargeldabhebung, die Einlagensicherung und welcher Zins auch nach dem Neukunden-Halbjahr noch gilt."
         />
       </Container>
       <Container className="pb-20">
@@ -240,7 +240,7 @@ export function VergleichView() {
             <strong style={{ color: "var(--h-ink)" }}>
               E-Geld-Institut ohne gesetzliche Einlagensicherung
             </strong>{" "}
-            — Kundengelder werden getrennt verwahrt, das ist aber nicht dasselbe.{" "}
+           , Kundengelder werden getrennt verwahrt, das ist aber nicht dasselbe.{" "}
             <Link
               href={hrefFor("ratgeber-einlagensicherung-neobanken")}
               className="font-semibold underline underline-offset-2"
@@ -251,7 +251,7 @@ export function VergleichView() {
           </Disclaimer>
         </div>
         <div className="mt-4 font-mono text-[11px]" style={{ color: "var(--h-faint)" }}>
-          * Zinsen variabel, Stand Juni 2026 — vor Launch verifizieren. „0 € mit Bedingung“
+          * Zinsen variabel, Stand Juni 2026, vor Launch verifizieren. „0 € mit Bedingung“
           (DKB/ING) wird nie wie bedingungslos kostenlos gewertet.
         </div>
       </Container>

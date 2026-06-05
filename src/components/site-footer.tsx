@@ -46,7 +46,7 @@ export function SiteFooter() {
               className="mt-4 text-[13.5px] leading-relaxed"
               style={{ color: "var(--h-muted)" }}
             >
-              Unabhängiges Vergleichsportal für digitale Banken in Deutschland — von der
+              Unabhängiges Vergleichsportal für digitale Banken in Deutschland, von der
               Neobank bis zum Direktbank-Klassiker. Finanziert über Affiliate-Links, ohne
               Kosten für dich.
             </p>

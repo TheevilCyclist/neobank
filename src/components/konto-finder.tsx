@@ -148,7 +148,7 @@ export function KontoFinder() {
             Welches Konto passt zu dir?
           </h3>
           <p className="mt-3 text-[15px] leading-relaxed max-w-[20rem]" style={{ color: "var(--h-muted)" }}>
-            5 Fragen, unter 60 Sekunden — und eine ehrliche Empfehlung. Auch wenn sie „zwei
+            5 Fragen, unter 60 Sekunden und eine ehrliche Empfehlung. Auch wenn sie „zwei
             Konten“ lautet.
           </p>
           <div className="mt-7 w-full max-w-[18rem]">

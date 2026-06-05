@@ -219,7 +219,7 @@ export function Disclaimer({
 }
 
 const ZINS_TEXT =
-  "Alle hier gezeigten Guthabenzinsen sind eine Momentaufnahme (Stand Juni 2026). Sie sind variabel, an die Marktlage (EZB-Einlagenfazilität) gekoppelt und können sich jederzeit ändern. Je nach Bank, Tarif, Aktionszeitraum, Guthabenhöhe und Produkt — Girokonto, Tagesgeld, Pocket oder Geldmarktfonds — fällt der tatsächliche Zins unterschiedlich aus. Maßgeblich sind ausschließlich die aktuellen Konditionen des jeweiligen Anbieters.";
+  "Alle hier gezeigten Guthabenzinsen sind eine Momentaufnahme (Stand Juni 2026). Sie sind variabel, an die Marktlage (EZB-Einlagenfazilität) gekoppelt und können sich jederzeit ändern. Je nach Bank, Tarif, Aktionszeitraum, Guthabenhöhe und Produkt (Girokonto, Tagesgeld, Pocket oder Geldmarktfonds) fällt der tatsächliche Zins unterschiedlich aus. Maßgeblich sind ausschließlich die aktuellen Konditionen des jeweiligen Anbieters.";
 
 // Snapshot-disclaimer for interest rates. `prominent` (default) sits above the
 // comparison table; `subtle` is a quiet one-liner for other rate-bearing pages.
@@ -232,7 +232,7 @@ export function ZinsDisclaimer({ variant = "prominent" }: { variant?: "prominent
       >
         <Icon name="activity" size={12} style={{ flexShrink: 0, marginTop: 2 }} />
         Zinsangaben sind eine Momentaufnahme (Stand Juni 2026), variabel und je nach Bank, Tarif
-        und Produkt unterschiedlich — maßgeblich sind die aktuellen Konditionen des Anbieters.
+        und Produkt unterschiedlich, maßgeblich sind die aktuellen Konditionen des Anbieters.
       </p>
     );
   }

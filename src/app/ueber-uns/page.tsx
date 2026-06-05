@@ -3,7 +3,7 @@ import { Btn } from "@/components/button";
 import { hrefFor } from "@/lib/routes";
 
 export const metadata = {
-  title: "Über uns — Wir lesen das Kleingedruckte | neoradar.de",
+  title: "Über uns: Wir lesen das Kleingedruckte | neoradar.de",
 };
 
 export default function UeberUnsPage() {
@@ -19,7 +19,7 @@ export default function UeberUnsPage() {
         <PageHead
           kicker="Über uns"
           title="Wir sind die, die das Kleingedruckte lesen."
-          lead="neoradar.de ist ein unabhängiges Vergleichsportal für digitale Banken in Deutschland — von der Neobank bis zum Direktbank-Klassiker."
+          lead="neoradar.de ist ein unabhängiges Vergleichsportal für digitale Banken in Deutschland, von der Neobank bis zum Direktbank-Klassiker."
         />
       </Container>
       <Container className="pb-20">
@@ -27,7 +27,7 @@ export default function UeberUnsPage() {
           <div className="space-y-5">
             <p className="text-[17px] leading-relaxed" style={{ color: "var(--h-muted)" }}>
               Gegründet, weil die großen Vergleichsseiten zu oft die Frage beantworten, welches
-              Konto am meisten Provision bringt — statt der Frage, welches Konto zu deinem Leben
+              Konto am meisten Provision bringt, statt der Frage, welches Konto zu deinem Leben
               passt.
             </p>
             <p className="text-[17px] leading-relaxed" style={{ color: "var(--h-muted)" }}>

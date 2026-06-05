@@ -296,7 +296,7 @@ export function SteckbriefView({ bank }: { bank: Bank }) {
         <div className="max-w-[40rem] mb-6">
           <Eyebrow>Häufige Fragen</Eyebrow>
           <h2 className="font-bold mt-4" style={{ color: "var(--h-ink)", fontSize: "clamp(24px,3vw,36px)", letterSpacing: "-0.02em" }}>
-            {b.name} — kurz beantwortet.
+            {b.name}, kurz beantwortet.
           </h2>
         </div>
         <div style={{ borderTop: "1px solid var(--h-line)" }}>

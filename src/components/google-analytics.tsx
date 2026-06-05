@@ -11,7 +11,7 @@ declare global {
 
 /**
  * GA4 mit Google Consent Mode v2.
- * Standard: alle Speicher-Signale auf "denied" — es wird nichts gesetzt/getrackt,
+ * Standard: alle Speicher-Signale auf "denied", es wird nichts gesetzt/getrackt,
  * bis der Nutzer im Cookie-Banner zustimmt (dann `consent: update` → granted).
  * Eine frühere Einwilligung (Cookie `neoradar-consent=all`) wird beim Laden
  * automatisch berücksichtigt.
@@ -26,7 +26,7 @@ export function GoogleAnalytics() {
           window.gtag = gtag;
           gtag('js', new Date());
 
-          // Consent Mode v2 — Default: alles abgelehnt, bis Zustimmung erfolgt
+          // Consent Mode v2, Default: alles abgelehnt, bis Zustimmung erfolgt
           gtag('consent', 'default', {
             ad_storage: 'denied',
             ad_user_data: 'denied',

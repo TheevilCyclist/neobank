@@ -29,7 +29,7 @@ function HomeHero() {
               <span style={{ color: "var(--h-muted)" }}>Nicht die Bank.</span>
             </h1>
             <p className="mt-6 text-[17.5px] leading-relaxed max-w-[34rem]" style={{ color: "var(--h-muted)" }}>
-              Beantworte 5 Fragen — wir sagen dir, welches der 10 Konten in unserem Radar zu
+              Beantworte 5 Fragen, wir sagen dir, welches der 10 Konten in unserem Radar zu
               deiner Situation passt. Ohne Anmeldung, ohne E-Mail, ohne Verkaufsdruck. Und wenn
               die ehrliche Antwort
               <span style={{ color: "var(--h-ink)", fontWeight: 600 }}> „zwei Konten“</span> lautet,
@@ -75,7 +75,7 @@ function UseCases() {
             Du weißt schon, was du brauchst?
           </h2>
           <p className="mt-4 text-[16px] leading-relaxed" style={{ color: "var(--h-muted)" }}>
-            Spring direkt zum passenden Vergleich oder Ratgeber — der Finder ist optional.
+            Spring direkt zum passenden Vergleich oder Ratgeber, der Finder ist optional.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -123,9 +123,9 @@ function UseCases() {
 
 function TrustBlock() {
   const items: { icon: "fileText" | "lock" | "search"; t: string; s: string }[] = [
-    { icon: "fileText", t: "Geprüft auf das, was zählt", s: "Kosten, Zinsen, Lizenzmodell, App und Support — gewichtet bewertet." },
+    { icon: "fileText", t: "Geprüft auf das, was zählt", s: "Kosten, Zinsen, Lizenzmodell, App und Support, gewichtet bewertet." },
     { icon: "lock", t: "0 € Kosten für dich", s: "Finanziert über Affiliate-Links, nie über deinen Geldbeutel." },
-    { icon: "search", t: "Finder-Logik offengelegt", s: "Keine Black Box — die Empfehlung folgt nachvollziehbaren Regeln." },
+    { icon: "search", t: "Finder-Logik offengelegt", s: "Keine Black Box, die Empfehlung folgt nachvollziehbaren Regeln." },
   ];
   return (
     <section
@@ -190,7 +190,7 @@ function StackTeaser() {
               Manchmal ist das ehrlichste Finder-Ergebnis ein{" "}
               <span style={{ color: "var(--h-ink)", fontWeight: 600 }}>Konto-Stack</span>: ein
               Hauptkonto fürs Gehalt, ein Spezialkonto für Reisen oder Struktur. Wie du den Stack
-              baust — ohne Gebühren und ohne Chaos.
+              baust, ohne Gebühren und ohne Chaos.
             </p>
             <div className="mt-8">
               <Btn href={hrefFor("ratgeber-konto-stack")}>Konto-Stack lesen</Btn>
