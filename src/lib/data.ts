@@ -86,6 +86,7 @@ export const FILTERS: Filter[] = [
   { id: "klassiker", label: "Digitale Klassiker" },
   { id: "zinsen", label: "Zinsen" },
   { id: "reisen", label: "Reisen" },
+  { id: "gemeinschaft", label: "Gemeinschaftskonto" },
   { id: "unterkonten", label: "Unterkonten" },
   { id: "premium", label: "Premium" },
   { id: "lizenz", label: "Vollbanklizenz" },
@@ -161,7 +162,7 @@ export const BANKS: Bank[] = [
   {
     id: "bunq", url: "https://www.bunq.com/de", name: "bunq", mono: "b", typ: "Neobank", tarif: "Easy Bank", fee: 3.99, feeNote: "pro Monat",
     rate: 2.01, rateLabel: "bis 2,01 %", blurb: "Bis zu 25 Unterkonten mit eigener IBAN", highlight: "25 Sub-IBANs", hero: true,
-    rating: 4.3, sicherung: "nl", cats: ["neobanken", "unterkonten", "premium"],
+    rating: 4.3, sicherung: "nl", cats: ["neobanken", "unterkonten", "premium", "gemeinschaft"],
     thesis: "25 IBANs: Das Konto als Ordnungssystem.",
     intro: "bunq ist die einzige Bank im Radar, die das Konto als Datei-System denkt: bis zu 25 Unterkonten mit eigener IBAN. Das kostet 3,99 €/Monat — und ist für drei Gruppen jeden Cent wert: WGs, Paare mit Drei-Konten-Modell und Selbstständige mit Steuer-Pocket.",
     forWhom: ["WGs", "Paare mit Drei-Konten-Modell", "Selbstständige mit Steuer-Pocket"],
@@ -221,7 +222,7 @@ export const BANKS: Bank[] = [
   {
     id: "dkb", url: "https://www.dkb.de/", name: "DKB", mono: "D", typ: "Klassiker", tarif: "Girokonto", fee: 0, feeNote: "mit Aktivstatus", feeCond: "ab 700 € Geldeingang/Monat — sonst 4,50 €/Monat",
     rate: 1.0, rateLabel: "Tagesgeld 1,0 %", blurb: "Reise-Klassiker mit Aktivstatus", highlight: "Reise-Klassiker", hero: false,
-    rating: 4.3, sicherung: "de_plus", cats: ["klassiker", "reisen", "lizenz"],
+    rating: 4.3, sicherung: "de_plus", cats: ["klassiker", "reisen", "lizenz", "gemeinschaft"],
     thesis: "Der Klassiker, der wie eine Neobank rechnet — wenn du Aktivkunde bist.",
     intro: "Die DKB ist mit über 5 Millionen Kunden einer der großen Direktbank-Klassiker — und seit Jahren das Lieblingskonto von Vielreisenden: Visa Debit kostenlos, weltweit gebührenfrei bezahlen und abheben, Gemeinschaftskonto inklusive. Der Haken steckt im Aktivstatus.",
     forWhom: ["Gehaltskonto-Wechsler", "Vielreisende mit Einkommen", "Paare (echtes Gemeinschaftskonto)", "Sicherheitsbewusste"],
@@ -236,7 +237,7 @@ export const BANKS: Bank[] = [
   {
     id: "ing", url: "https://www.ing.de/", name: "ING", mono: "I", typ: "Klassiker", tarif: "Girokonto", fee: 0, feeNote: "ab 700 € Eingang", feeCond: "ab 700 € Geldeingang/Monat oder unter 28",
     rate: 3.2, rateLabel: "Aktionszins 3,2 %", blurb: "Marktführer-Allrounder", highlight: "Allrounder", hero: false,
-    rating: 4.2, sicherung: "de_plus", cats: ["klassiker", "lizenz"],
+    rating: 4.2, sicherung: "de_plus", cats: ["klassiker", "lizenz", "gemeinschaft"],
     thesis: "Der Marktführer-Allrounder: unaufgeregt, aber selten die Spitze.",
     intro: "Deutschlands größte Direktbank macht wenig falsch und wenig spektakulär: kostenloses Girokonto ab 700 € Geldeingang oder unter 28, große Automaten-Abdeckung über Visa, solides Banking ohne Überraschungen. Die Zins-Story läuft über das Extra-Konto.",
     forWhom: ["Wechsel-Skeptiker", "Hauptkonto-Suchende mit Gehalt", "Dispo-Nutzer (fairer Zins)"],
