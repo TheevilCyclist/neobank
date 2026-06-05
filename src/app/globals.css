@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── neobank.de "Editorial Tech" design tokens ─────────────────────────────
+   Baked from the prototype's default Tweaks (accent: Teal #0d9488,
+   widget tone: Nachtblau). The original prototype set these at runtime via
+   JS; here they live as static custom properties. */
+:root {
+  /* base surfaces & text */
+  --h-bg: #fbf9f6;
+  --h-tint: #f3efe8;
+  --h-card: #fffdf9;
+  --h-nav: rgba(251, 249, 246, 0.82);
+  --h-ink: #23262c;
+  --h-muted: #5b5f66;
+  --h-faint: #9c988f;
+  --h-line: #e9e3d7;
+  --h-line-strong: #dbd3c4;
+
+  /* accent (teal) */
+  --h-accent: #0d9488;
+  --h-accent-ink: #0f766e;
+  --h-accent-bright: #2dd4bf;
+  --h-accent-on: #ffffff;
+  --h-accent-soft: rgba(13, 148, 136, 0.1);
+  --h-accent-line: rgba(13, 148, 136, 0.22);
+  --h-accent-shadow: rgba(13, 148, 136, 0.42);
+
+  /* dark "terminal" widget (Nachtblau) */
+  --h-term-bg: #0e1729;
+  --h-term-line: rgba(148, 170, 200, 0.13);
+  --h-term-chip: rgba(148, 170, 200, 0.1);
+  --h-term-fg: #e7ecf3;
+  --h-term-muted: #6b7689;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--h-bg);
+  color: var(--h-ink);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: rgba(13, 148, 136, 0.16);
+}
+
+button {
+  font-family: inherit;
 }

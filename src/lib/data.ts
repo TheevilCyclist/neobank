@@ -1,0 +1,429 @@
+// neobank.de — Datenmodell (10 Banken, IA, Inhalte). Stand Juni 2026, illustrativ.
+// Alle Konditionen plausibel gesetzt — vor Launch verifizieren.
+import type { IconName } from "@/components/icons";
+
+export type SicherungTone = "ok" | "warn" | "risk";
+
+export interface SicherungModel {
+  label: string;
+  note: string;
+  tone: SicherungTone;
+}
+
+export interface Bank {
+  id: string;
+  name: string;
+  mono: string;
+  typ: string;
+  tarif: string;
+  fee: number;
+  feeNote: string;
+  feeCond?: string;
+  rate: number;
+  rateLabel: string;
+  blurb: string;
+  highlight: string;
+  hero: boolean;
+  rating: number;
+  sicherung: SicherungId;
+  cats: string[];
+  thesis: string;
+  intro: string;
+  forWhom: string[];
+  notForWhom: string[];
+  daten: [string, string][];
+  alltag: [string, string][];
+  fazit: string;
+  stackRole: string;
+  alternativen: string[];
+  faq: [string, string][];
+}
+
+export interface UseCase {
+  id: string;
+  icon: IconName;
+  title: string;
+  sub: string;
+  target: { view: string; filter?: string };
+}
+
+export interface Filter {
+  id: string;
+  label: string;
+}
+
+export interface RatgeberMeta {
+  id: string;
+  kicker: string;
+  title: string;
+  teaser: string;
+  read: string;
+}
+
+// ---- Navigation ----
+export const NAV: { id: string; label: string }[] = [
+  { id: "vergleich", label: "Vergleich" },
+  { id: "banken", label: "Steckbriefe" },
+  { id: "ratgeber", label: "Ratgeber" },
+];
+
+// ---- Use-Cases (Fallback-Einstieg für Selbst-Navigierer) ----
+export const USECASES: UseCase[] = [
+  { id: "wechseln", icon: "repeat", title: "Hauptkonto wechseln", sub: "In 12 Werktagen umgezogen", target: { view: "ratgeber-hauptkonto-wechseln" } },
+  { id: "reisen", icon: "plane", title: "Viel unterwegs", sub: "0 % Fremdwährung, weltweit abheben", target: { view: "vergleich", filter: "reisen" } },
+  { id: "selbststaendig", icon: "briefcase", title: "Selbstständig", sub: "Sub-IBANs für Steuern & Rücklagen", target: { view: "ratgeber-konto-selbststaendige" } },
+  { id: "gemeinschaft", icon: "users", title: "Konto teilen", sub: "Modelle für Paare & WGs", target: { view: "ratgeber-gemeinschaftskonto" } },
+  { id: "nachhaltig", icon: "leaf", title: "Nachhaltig banken", sub: "Klimaneutrales Banking", target: { view: "ratgeber-nachhaltige-neobank" } },
+  { id: "system", icon: "scale", title: "Fintech oder etablierte Bank?", sub: "Neobank vs. DKB, ING & Co.", target: { view: "ratgeber-neobank-oder-direktbank" } },
+  { id: "zinsen", icon: "percent", title: "Sparen & Zinsen", sub: "Guthabenzinsen im Vergleich", target: { view: "vergleich", filter: "zinsen" } },
+];
+
+// ---- Filter-Tabs der Vergleichsmatrix ----
+export const FILTERS: Filter[] = [
+  { id: "alle", label: "Alle" },
+  { id: "neobanken", label: "Neobanken" },
+  { id: "klassiker", label: "Digitale Klassiker" },
+  { id: "zinsen", label: "Zinsen" },
+  { id: "reisen", label: "Reisen" },
+  { id: "unterkonten", label: "Unterkonten" },
+  { id: "premium", label: "Premium" },
+  { id: "lizenz", label: "Vollbanklizenz" },
+];
+
+// ---- Sicherungs-Modelle ----
+export type SicherungId =
+  | "de_voll"
+  | "de_plus"
+  | "partner"
+  | "lt"
+  | "nl"
+  | "es"
+  | "egeld";
+
+export const SICHERUNG: Record<SicherungId, SicherungModel> = {
+  de_voll: { label: "Deutsche Einlagensicherung", note: "Eigene Vollbanklizenz · gesetzlich bis 100.000 €", tone: "ok" },
+  de_plus: { label: "Deutsche Sicherung + Verbund", note: "Gesetzlich bis 100.000 € · zusätzlich erweiterte Verbundsicherung", tone: "ok" },
+  partner: { label: "Partnerbank (Solaris)", note: "Sicherung läuft über die Partnerbank, bis 100.000 €", tone: "ok" },
+  lt: { label: "Litauische Einlagensicherung", note: "EU-Richtlinie bis 100.000 € · anderes Sicherungsvermögen", tone: "warn" },
+  nl: { label: "Niederländische Einlagensicherung", note: "EU-Richtlinie bis 100.000 € · anderes Sicherungsvermögen", tone: "warn" },
+  es: { label: "Spanische Einlagensicherung", note: "EU-Richtlinie bis 100.000 € · Santander-Gruppe", tone: "warn" },
+  egeld: { label: "E-Geld-Institut", note: "Keine gesetzliche Einlagensicherung · Gelder getrennt verwahrt", tone: "risk" },
+};
+
+// ---- Banken (10) ----
+export const BANKS: Bank[] = [
+  {
+    id: "c24", name: "C24", mono: "C", typ: "Neobank", tarif: "Smart", fee: 0, feeNote: "dauerhaft kostenlos",
+    rate: 4.0, rateLabel: "bis 4,0 %", blurb: "Beste Zinsen aufs Girokonto", highlight: "Beste Zinsen", hero: true,
+    rating: 4.7, sicherung: "de_voll", cats: ["neobanken", "zinsen", "unterkonten", "lizenz"],
+    thesis: "Die Zins-Maschine mit Check24-Genen.",
+    intro: "Bis zu 4 % aufs Girokonto, ohne separates Tagesgeldkonto — das ist 2026 die Ansage im Markt. Der Preis: Du bewegst dich im Check24-Ökosystem, das vom Querverkauf lebt. Wir zeigen, wie du die Zinsen mitnimmst, ohne Vertrags-Upselling mitzukaufen.",
+    forWhom: ["Zins-Optimierer", "Pockets-Sparer", "Cashback-Jäger"],
+    notForWhom: ["Wer maximale Daten-Sparsamkeit will", "Wer einen Auslandsschwerpunkt hat"],
+    daten: [["Kontoführung", "0 € / Monat"], ["Guthabenzins", "bis 4,0 % p. a. (variabel)"], ["Karte", "Visa Debit, Apple/Google Pay"], ["Unterkonten", "bis 3 Pockets"], ["Lizenz", "Vollbank, deutsche Einlagensicherung"]],
+    alltag: [["Zins-Setup", "Guthaben wird ab dem ersten Euro verzinst — kein separates Tagesgeldkonto nötig."], ["Pockets als Sparziele", "Bis zu drei Töpfe mit eigenem Zins; gut für Rücklagen."], ["Cashback-Strecke", "Über das Check24-Ökosystem; lohnt nur bei aktiver Nutzung."]],
+    fazit: "Wer 2026 das Maximum an Guthabenzins ohne Hopping will, kommt an C24 kaum vorbei — mit Blick auf das Upselling im Hintergrund.",
+    stackRole: "Spezialkonto im Zins-Stack (Sparpuffer).",
+    alternativen: ["openbank", "trade-republic"],
+    faq: [["Sind die 4 % garantiert?", "Nein. Der Zins ist variabel und an die EZB-Einlagenfazilität gekoppelt — wir prüfen die Konditionen laufend und halten sie aktuell."], ["Brauche ich ein Tagesgeldkonto?", "Nein, das Guthaben wird direkt auf dem Girokonto verzinst."], ["Wie sicher ist mein Geld?", "C24 hat eine deutsche Vollbanklizenz, gesetzliche Einlagensicherung bis 100.000 €."]],
+  },
+  {
+    id: "trade-republic", name: "Trade Republic", mono: "T", typ: "Neobank/Broker", tarif: "Girokonto", fee: 0, feeNote: "dauerhaft kostenlos",
+    rate: 2.0, rateLabel: "2,0 % ab 1. €", blurb: "Zinsen + Depot in einer App", highlight: "Zins + Depot", hero: true,
+    rating: 4.4, sicherung: "de_voll", cats: ["neobanken", "zinsen", "lizenz"],
+    thesis: "Der Broker, der ein Girokonto wurde.",
+    intro: "Seit der Vollbanklizenz ist Trade Republic mehr als ein Neobroker: deutsche IBAN, Visa, 2 % Zinsen ab dem ersten Euro ohne Obergrenze, SEPA Instant. Stark für alle, die Sparen und Investieren in einer App wollen.",
+    forWhom: ["Sparer mit ETF-Plan", "App-affine Einsteiger", "Wer Konto & Depot bündeln will"],
+    notForWhom: ["Unterkonten-Fans (keine Pockets)", "Gemeinschaftskonto-Suchende"],
+    daten: [["Kontoführung", "0 € / Monat"], ["Guthabenzins", "2,0 % ab dem ersten Euro, ohne Limit"], ["Karte", "Visa, SEPA Instant"], ["Depot", "Aktien, ETFs, Sparpläne integriert"], ["Lizenz", "Vollbank, deutsche Einlagensicherung"]],
+    alltag: [["Zins ohne Limit", "2 % gelten ab dem ersten Euro — kein Staffelmodell."], ["Geldmarktfonds-Frage", "Ein Teil des Guthabens liegt ggf. im Fonds; relevant für die Einlagensicherung."], ["Sparen + Investieren", "Dauerauftrag plus ETF-Sparplan in einer App."]],
+    fazit: "Die beste Wahl, wenn Konto und Depot zusammengehören sollen — mit ehrlichem Blick auf die Geldmarktfonds-Konstruktion.",
+    stackRole: "Hauptkonto im Zins-Stack mit Depot-Anbindung.",
+    alternativen: ["c24", "n26"],
+    faq: [["Gilt der Zins wirklich unbegrenzt?", "2 % gelten ab dem ersten Euro ohne Obergrenze — Stand Juni 2026, variabel."], ["Liegt mein Geld in einem Fonds?", "Teilweise; wir erklären im Einlagensicherungs-Ratgeber, was das bedeutet."], ["Gibt es Unterkonten?", "Nein, derzeit keine Pockets oder Sub-IBANs."]],
+  },
+  {
+    id: "n26", name: "N26", mono: "N", typ: "Neobank", tarif: "Standard", fee: 0, feeNote: "dauerhaft kostenlos",
+    rate: 2.5, rateLabel: "bis 2,5 %", blurb: "Beste App-User-Experience", highlight: "Beste App-UX", hero: true,
+    rating: 4.6, sicherung: "de_voll", cats: ["neobanken", "premium", "unterkonten", "lizenz"],
+    thesis: "Das Default-Konto, das du hinterfragen solltest.",
+    intro: "N26 ist für viele die erste Neobank — und die App setzt bis heute den UX-Maßstab. Aber: Wer mehr als 2,5 % Zinsen will oder Bargeld-intensiv lebt, zahlt den Komfort mit Opportunitätskosten.",
+    forWhom: ["App-Puristen", "Einsteiger", "Gehaltskonto-Nutzer"],
+    notForWhom: ["Zins-Maximierer", "Bargeld-Fans (CASH26-Limits)", "Gemeinschaftskonto-Suchende"],
+    daten: [["Kontoführung", "0 € / Monat (Standard)"], ["Guthabenzins", "bis 2,5 % p. a. (variabel)"], ["Karte", "Virtuelle Mastercard Debit, Apple/Google Pay"], ["Unterkonten", "Spaces (Sharing möglich)"], ["Lizenz", "Vollbank, deutsche Einlagensicherung"]],
+    alltag: [["Gehaltseingang & Push", "Echtzeit-Benachrichtigung bei jeder Buchung."], ["Abhebung im Ausland", "Im Gratistarif limitiert; Metal erweitert das Limit."], ["Spaces als Budgettöpfe", "Unterkonten zum Sparen, optional geteilt."]],
+    fazit: "Das komfortabelste Einsteiger-Konto — als Hauptkonto stark, beim Zins aber nur Mittelfeld. Oft ist ein Zweitkonto die bessere Antwort als ein Metal-Upgrade.",
+    stackRole: "Hauptkonto fürs Gehalt (App-Komfort).",
+    alternativen: ["c24", "trade-republic"],
+    faq: [["Lohnt sich N26 Metal?", "Nur bei hohem Bargeld-/Reisebedarf — wir rechnen es im Steckbrief vor."], ["Gibt es ein Gemeinschaftskonto?", "Kein echtes; nur Spaces-Sharing zwischen Konten."], ["Wie hoch ist der Zins?", "Bis 2,5 % p. a., variabel — Stand Juni 2026."]],
+  },
+  {
+    id: "bunq", name: "bunq", mono: "b", typ: "Neobank", tarif: "Easy Bank", fee: 3.99, feeNote: "pro Monat",
+    rate: 2.46, rateLabel: "bis 2,46 %", blurb: "Bis zu 25 Unterkonten mit eigener IBAN", highlight: "25 Sub-IBANs", hero: true,
+    rating: 4.3, sicherung: "nl", cats: ["neobanken", "unterkonten", "premium"],
+    thesis: "25 IBANs: Das Konto als Ordnungssystem.",
+    intro: "bunq ist die einzige Bank im Radar, die das Konto als Datei-System denkt: bis zu 25 Unterkonten mit eigener IBAN. Das kostet 3,99 €/Monat — und ist für drei Gruppen jeden Cent wert: WGs, Paare mit Drei-Konten-Modell und Selbstständige mit Steuer-Pocket.",
+    forWhom: ["WGs", "Paare mit Drei-Konten-Modell", "Selbstständige mit Steuer-Pocket"],
+    notForWhom: ["Wer ein simples Gratiskonto sucht", "Minimalisten (Overkill)"],
+    daten: [["Kontoführung", "3,99 € / Monat (Easy Bank)"], ["Guthabenzins", "bis 2,46 % p. a. (variabel)"], ["Unterkonten", "bis 25 mit eigener IBAN"], ["Karte", "Maestro/Mastercard, Apple/Google Pay"], ["Lizenz", "Niederländische Banklizenz & Einlagensicherung"]],
+    alltag: [["Sub-IBAN je Zweck", "Eine IBAN für Miete, eine für Sparen, eine für Steuern."], ["WG-Aufteilung", "Gemeinsame Töpfe mit getrennten IBANs — faire Abrechnung."], ["Steuer-Pocket", "19 % jeder Rechnung sofort umbuchen."]],
+    fazit: "Für strukturierte Köpfe und Selbstständige jeden Cent wert — für alle anderen Overkill.",
+    stackRole: "Struktur-Konto im Selbstständigen-Stack.",
+    alternativen: ["n26", "c24"],
+    faq: [["Warum kostet bunq Geld?", "Die 3,99 €/Monat finanzieren die 25 Sub-IBANs und Features — lohnt nur bei aktivem Bedarf."], ["Ist mein Geld sicher?", "bunq unterliegt der niederländischen Einlagensicherung bis 100.000 €."], ["Eignet sich bunq fürs Gemeinschaftskonto?", "Ja, über geteilte Unterkonten — siehe Gemeinschaftskonto-Ratgeber."]],
+  },
+  {
+    id: "revolut", name: "Revolut", mono: "R", typ: "Neobank", tarif: "Standard", fee: 0, feeNote: "dauerhaft kostenlos",
+    rate: 2.0, rateLabel: "bis 2,0 %", blurb: "Perfekt für Reisen & Ausland", highlight: "Top für Reisen", hero: true,
+    rating: 4.4, sicherung: "lt", cats: ["neobanken", "reisen", "premium"],
+    thesis: "Das Reise-Schweizermesser — als Zweitkonto.",
+    intro: "30+ Währungen, Wechselkurse nahe Interbank, Wochenend-Aufschlag als Kleingedrucktes. Unsere klare Empfehlung: Revolut nicht als Hauptkonto, sondern als Reise-Modul im Konto-Stack.",
+    forWhom: ["Vielreisende", "Fremdwährungs-Nutzer", "Krypto-Neugierige"],
+    notForWhom: ["Gehaltskonto-Traditionalisten (litauische IBAN)", "Wer Wert auf deutsche Sicherung legt"],
+    daten: [["Kontoführung", "0 € / Monat (Standard)"], ["Währungen", "30+ Währungen, Interbank-nah"], ["Karte", "Visa/Mastercard, virtuelle Karten"], ["Wochenende", "Aufschlag beim Tausch am Wochenende"], ["Lizenz", "Litauische Banklizenz & Einlagensicherung"]],
+    alltag: [["10-Tage-Fernreise", "Hausbank vs. Revolut = dreistellige Ersparnis."], ["Budget vorab laden", "Per Instant-Überweisung aufs Reisekonto."], ["IBAN-Diskriminierung", "Litauische IBAN kann bei Lastschriften haken."]],
+    fazit: "Als Reise-Modul brillant, als Hauptkonto wegen der LT-IBAN mit Vorsicht zu genießen.",
+    stackRole: "Reise-Modul im Reise-Stack.",
+    alternativen: ["dkb", "n26"],
+    faq: [["Kann ich Revolut als Gehaltskonto nutzen?", "Möglich, aber manche Arbeitgeber/Lastschriften haken bei der LT-IBAN."], ["Was kostet der Geldwechsel?", "Werktags nahe Interbank; am Wochenende mit Aufschlag."], ["Wie ist die Einlagensicherung?", "Litauische Sicherung bis 100.000 € nach EU-Richtlinie."]],
+  },
+  {
+    id: "vivid", name: "Vivid", mono: "V", typ: "Neobank", tarif: "Standard", fee: 0, feeNote: "dauerhaft kostenlos",
+    rate: 2.0, rateLabel: "Zins-Pocket", blurb: "Cashback & Trading", highlight: "Cashback & Trading", hero: false,
+    rating: 4.0, sicherung: "egeld", cats: ["neobanken", "premium"],
+    thesis: "Cashback und Zins-Pockets — für Finanz-Tüftler, nicht für Jedermann.",
+    intro: "Vivid belohnt aktives Management: Cashback auf Lastschriften, Zins-Pockets über Geldmarktfonds, integriertes Trading. Der entscheidende Unterschied: Vivid ist ein E-Geld-Institut — keine gesetzliche Einlagensicherung.",
+    forWhom: ["Finanz-Tüftler", "Cashback-Jäger", "Trading-Neugierige"],
+    notForWhom: ["Wer gesetzliche Einlagensicherung braucht", "Set-and-forget-Sparer"],
+    daten: [["Kontoführung", "0 € / Monat (Standard)"], ["Zins", "über Geldmarktfonds-Pockets (Basiszins niedrig)"], ["Cashback", "auf ausgewählte Lastschriften"], ["Trading", "Aktien & Krypto integriert"], ["Lizenz", "E-Geld-Institut — keine gesetzliche Einlagensicherung"]],
+    alltag: [["Zins-Pocket", "Verzinsung läuft über Fonds, nicht über Guthabenzins."], ["Cashback-Logik", "Belohnt aktive Nutzung, nicht Parken."], ["Segregation", "Kundengelder getrennt verwahrt — anders als Einlagensicherung."]],
+    fazit: "Spannend für aktive Tüftler — aber das E-Geld-Modell ohne gesetzliche Einlagensicherung muss man bewusst wählen.",
+    stackRole: "Optionales Spezialkonto für Cashback/Trading.",
+    alternativen: ["trade-republic", "revolut"],
+    faq: [["Ist Vivid eine Bank?", "Nein, ein E-Geld-Institut. Gelder werden getrennt verwahrt, es gibt keine gesetzliche Einlagensicherung."], ["Wie funktioniert der Zins?", "Über Geldmarktfonds-Pockets — der Basis-Guthabenzins ist niedrig."], ["Für wen lohnt sich Vivid?", "Für aktive Nutzer mit Cashback- und Trading-Interesse."]],
+  },
+  {
+    id: "tomorrow", name: "Tomorrow", mono: "T", typ: "Neobank", tarif: "Now", fee: 0, feeNote: "dauerhaft kostenlos",
+    rate: 1.75, rateLabel: "bis 1,75 %", blurb: "Klimaneutrales Banking aus Hamburg", highlight: "Klimaneutral", hero: false,
+    rating: 4.2, sicherung: "partner", cats: ["neobanken"],
+    thesis: "Was „nachhaltige Bank“ konkret heißt — und was es kostet.",
+    intro: "Tomorrow investiert Einlagen zu 100 % nachhaltig und ist klimaneutral — aber mit 1,75 % Zins und Limits bei Gratis-Abhebungen zahlst du eine messbare Haltungsprämie. Wir machen sie transparent.",
+    forWhom: ["Nachhaltigkeits-Bewusste", "Hamburg-Fans", "Wer Impact über Zins stellt"],
+    notForWhom: ["Zins-Maximierer", "Bargeld-Intensive"],
+    daten: [["Kontoführung", "0 € / Monat (Now)"], ["Guthabenzins", "bis 1,75 % p. a. (variabel)"], ["Investition", "100 % nachhaltig, klimaneutral"], ["Karte", "Recycling-Karte mit CO₂-Tracking"], ["Lizenz", "über Partnerbank Solaris abgesichert"]],
+    alltag: [["Haltungsprämie", "X € pro Jahr gegenüber C24 — wir beziffern es."], ["CO₂-Tracking", "Ausgaben werden ökologisch eingeordnet."], ["Partnerbank-Modell", "Sicherung läuft über Solaris."]],
+    fazit: "Ein sauberes Produkt für alle, die Nachhaltigkeit wirklich priorisieren — die Zinsdifferenz ist die bewusst gewählte Prämie.",
+    stackRole: "Hauptkonto für Werte-orientierte Nutzer.",
+    alternativen: ["c24", "n26"],
+    faq: [["Wie nachhaltig ist Tomorrow wirklich?", "Einlagen werden nach eigenen Kriterien investiert; wir prüfen Zertifizierungen kritisch."], ["Wer sichert mein Geld?", "Die Partnerbank Solaris, bis 100.000 €."], ["Was kostet die Nachhaltigkeit?", "Die Zinsdifferenz zur Spitze — im Steckbrief in Euro/Jahr beziffert."]],
+  },
+  {
+    id: "dkb", name: "DKB", mono: "D", typ: "Klassiker", tarif: "Girokonto", fee: 0, feeNote: "mit Aktivstatus", feeCond: "ab 700 € Geldeingang/Monat — sonst 4,50 €/Monat",
+    rate: 1.0, rateLabel: "Tagesgeld 1,0 %", blurb: "Reise-Klassiker mit Aktivstatus", highlight: "Reise-Klassiker", hero: false,
+    rating: 4.3, sicherung: "de_plus", cats: ["klassiker", "reisen", "lizenz"],
+    thesis: "Der Klassiker, der wie eine Neobank rechnet — wenn du Aktivkunde bist.",
+    intro: "Die DKB ist mit über 5 Millionen Kunden einer der großen Direktbank-Klassiker — und seit Jahren das Lieblingskonto von Vielreisenden: Visa Debit kostenlos, weltweit gebührenfrei bezahlen und abheben, Gemeinschaftskonto inklusive. Der Haken steckt im Aktivstatus.",
+    forWhom: ["Gehaltskonto-Wechsler", "Vielreisende mit Einkommen", "Paare (echtes Gemeinschaftskonto)", "Sicherheitsbewusste"],
+    notForWhom: ["Geringverdiener unter 700 € Eingang (über 28)", "Zins-Maximierer", "App-Puristen"],
+    daten: [["Kontoführung", "0 € mit Aktivstatus, sonst 4,50 €/Monat"], ["Aktivstatus", "ab 700 € Geldeingang/Monat oder unter 28"], ["Tagesgeld", "1,0 % p. a. (variabel)"], ["Karte", "Visa Debit — weltweit gebührenfrei (Aktivkunde)"], ["Lizenz", "Deutsche Vollbank + Verbundsicherung"]],
+    alltag: [["Aktivstatus-Logik", "Eigene Umbuchungen per Dauerauftrag zählen; Wertpapierumsätze nicht."], ["Abhebung Fernreise", "Weltweit gebührenfrei an Visa-Automaten."], ["Kontowechselservice", "Geführter Umzug von Gehalt & Lastschriften."]],
+    fazit: "Ein starkes Hauptkonto für Reisende mit regelmäßigem Einkommen — der Aktivstatus ist die zentrale Bedingung.",
+    stackRole: "Starkes Hauptkonto — kombiniert mit C24 (Zinsen) oder Revolut (Wochenend-Kurse).",
+    alternativen: ["ing", "revolut"],
+    faq: [["Wie werde ich Aktivkunde?", "Ab 700 € monatlichem Geldeingang oder Alter unter 28; eigene Umbuchungen per Dauerauftrag zählen."], ["Was kostet das Konto ohne Aktivstatus?", "4,50 €/Monat plus Fremdwährungsgebühr im Ausland."], ["Gibt es ein Gemeinschaftskonto?", "Ja, als Standardprodukt — anders als bei vielen Neobanken."]],
+  },
+  {
+    id: "ing", name: "ING", mono: "I", typ: "Klassiker", tarif: "Girokonto", fee: 0, feeNote: "ab 700 € Eingang", feeCond: "ab 700 € Geldeingang/Monat oder unter 28",
+    rate: 1.5, rateLabel: "Aktionszins", blurb: "Marktführer-Allrounder", highlight: "Allrounder", hero: false,
+    rating: 4.2, sicherung: "de_plus", cats: ["klassiker", "lizenz"],
+    thesis: "Der Marktführer-Allrounder: unaufgeregt, aber selten die Spitze.",
+    intro: "Deutschlands größte Direktbank macht wenig falsch und wenig spektakulär: kostenloses Girokonto ab 700 € Geldeingang oder unter 28, große Automaten-Abdeckung über Visa, solides Banking ohne Überraschungen. Die Zins-Story läuft über das Extra-Konto.",
+    forWhom: ["Wechsel-Skeptiker", "Hauptkonto-Suchende mit Gehalt", "Dispo-Nutzer (fairer Zins)"],
+    notForWhom: ["Zins-Optimierer nach Aktionsende", "Vielreisende (Fremdwährungsgebühr)", "Unterkonten-Fans"],
+    daten: [["Kontoführung", "0 € ab 700 € Eingang oder unter 28"], ["Extra-Konto", "Aktionszins für Neukunden, danach Basiszins"], ["Karte", "Visa Debit + Girocard optional"], ["Automaten", "große Abdeckung über Visa"], ["Lizenz", "Deutsche Vollbank + Verbundsicherung"]],
+    alltag: [["Aktionszins-Verlauf", "Was bleibt nach dem Aktionszeitraum übrig?"], ["Dispo-Kosten", "Vergleichsweise fairer Dispozins."], ["App im Vergleich", "Solide, aber kein N26-Niveau."]],
+    fazit: "Die sichere Wahl für alle, denen Neobanken zu jung und Filialbanken zu teuer sind — selten die beste Einzeldisziplin.",
+    stackRole: "Unaufgeregtes Allround-Hauptkonto.",
+    alternativen: ["dkb", "c24"],
+    faq: [["Bleibt der Aktionszins dauerhaft?", "Nein, nach dem Aktionszeitraum gilt der Basiszins — wir tracken das."], ["Ist das Konto wirklich kostenlos?", "Ab 700 € Geldeingang/Monat oder unter 28; sonst fallen Gebühren an."], ["Gibt es Unterkonten?", "Nein, keine Pockets/Sub-IBANs wie bei Neobanken."]],
+  },
+  {
+    id: "openbank", name: "Openbank", mono: "O", typ: "Klassiker", tarif: "Girokonto", fee: 0, feeNote: "bedingungslos kostenlos",
+    rate: 1.5, rateLabel: "Tagesgeld-Aktion", blurb: "Santander-Tochter mit Zins-Aktionen", highlight: "Zins-Aktionen", hero: false,
+    rating: 4.0, sicherung: "es", cats: ["klassiker", "zinsen"],
+    thesis: "Santanders Digitalbank: Zins-Aktionen mit spanischem Sicherungsnetz.",
+    intro: "Openbank ist die Digitaltochter der Santander-Gruppe — eine „Neobank mit Konzernmutter“. Stärken: bedingungslos kostenloses Konto und regelmäßig aggressive Tagesgeld-Aktionen für Neukunden.",
+    forWhom: ["Zins-Hopper", "Zweitkonto-Sucher", "Santander-Bestandskunden"],
+    notForWhom: ["Wer ein deutsches Sicherungssystem priorisiert", "Feature-Maximierer"],
+    daten: [["Kontoführung", "0 € / Monat (bedingungslos)"], ["Tagesgeld", "Aktionszins für Neukunden, danach Basiszins"], ["Karte", "Debit-Karte, Apple/Google Pay"], ["Mutter", "Santander-Gruppe"], ["Lizenz", "Spanische Einlagensicherung bis 100.000 €"]],
+    alltag: [["Aktionszins", "Top-Zins zeitlich befristet — wir tracken, was bleibt."], ["Spanisches Sicherungssystem", "Bis 100.000 €, aber andere Abwicklung als die deutsche EdB."], ["Kontoeröffnung", "Vollständig digital."]],
+    fazit: "Interessant für Zins-Aktionen als Zweitkonto — das spanische Sicherungssystem sollte man bewusst einordnen.",
+    stackRole: "Zweitkonto für Zins-Aktionen.",
+    alternativen: ["c24", "ing"],
+    faq: [["Wo ist mein Geld abgesichert?", "Über die spanische Einlagensicherung (Santander-Gruppe), bis 100.000 € nach EU-Richtlinie."], ["Sind die Top-Zinsen dauerhaft?", "Nein, meist befristete Aktionen — danach Basiszins."], ["Ist das Konto wirklich bedingungslos kostenlos?", "Ja, ohne Mindestgeldeingang — anders als DKB/ING."]],
+  },
+];
+
+export const BANK_BY_ID: Record<string, Bank> = Object.fromEntries(
+  BANKS.map((b) => [b.id, b]),
+);
+
+// ---- Ratgeber-Cluster ----
+export const RATGEBER: RatgeberMeta[] = [
+  { id: "konto-stack", kicker: "Signatur", title: "Der Konto-Stack", teaser: "Warum zwei Konten besser sind als das eine perfekte.", read: "6 Min" },
+  { id: "hauptkonto-wechseln", kicker: "Praxis", title: "Hauptkonto wechseln 2026", teaser: "In 12 Werktagen umgezogen — so läuft's wirklich.", read: "5 Min" },
+  { id: "neobank-oder-direktbank", kicker: "Entscheidung", title: "Neobank oder Direktbank?", teaser: "Der ehrliche Systemvergleich entlang fünf Dimensionen.", read: "7 Min" },
+  { id: "zinsen-ohne-hopping", kicker: "Geld", title: "Guthabenzinsen 2026", teaser: "4 % ohne Tagesgeld-Hopping — wie das geht.", read: "4 Min" },
+  { id: "reisekonto", kicker: "Reisen", title: "Das beste Reisekonto 2026", teaser: "Was eine Fernreise wirklich kostet.", read: "5 Min" },
+  { id: "konto-selbststaendige", kicker: "Business", title: "Konto für Selbstständige", teaser: "Privat trennen, Steuern parken, Belege exportieren.", read: "6 Min" },
+  { id: "nachhaltige-neobank", kicker: "Werte", title: "Nachhaltige Neobank", teaser: "Was dein Kontoguthaben anrichtet — oder bewirkt.", read: "5 Min" },
+  { id: "gemeinschaftskonto", kicker: "Teilen", title: "Gemeinschaftskonto", teaser: "Drei Modelle, eine Empfehlung.", read: "3 Min" },
+  { id: "einlagensicherung-neobanken", kicker: "Sicherheit", title: "Einlagensicherung erklärt", teaser: "Bank, E-Geld-Institut oder Partnerbank — der Unterschied, der zählt.", read: "6 Min" },
+];
+
+// ---- Ratgeber-Artikel (block content) ----
+export type Block =
+  | { t: "h2"; x: string }
+  | { t: "p"; x: string }
+  | { t: "lead"; x: string }
+  | { t: "callout"; label: string; x: string; icon?: IconName }
+  | { t: "steps"; items: string[] }
+  | { t: "list"; items: string[] }
+  | { t: "stackcard"; icon: IconName; title: string; x: string }
+  | { t: "table"; rows: [string, string][] };
+
+export interface Article {
+  kicker: string;
+  read: string;
+  title: string;
+  blocks: Block[];
+  related: string[];
+}
+
+export const ARTICLES: Record<string, Article> = {
+  "konto-stack": {
+    kicker: "Signatur · Konto-Stack", read: "6 Min",
+    title: "Der Konto-Stack: Warum zwei Konten besser sind als das eine perfekte",
+    blocks: [
+      { t: "lead", x: "Die ehrliche Antwort auf „Welche Neobank ist die beste?“ lautet: keine. Jeder Anbieter hat ein scharfes Profil — und genau das kannst du nutzen." },
+      { t: "p", x: "Statt nach dem einen perfekten Konto zu suchen, kombinierst du zwei spezialisierte Konten zu einem Stack. Kostenpunkt: meist 0 €. Aufwand: ein Nachmittag." },
+      { t: "stackcard", icon: "percent", title: "Stack 1 — Der Zins-Stack", x: "Gehalt läuft auf N26 oder Trade Republic (App-Komfort bzw. Depot-Anbindung), der Sparpuffer liegt bei C24 mit bis zu 4 % p. a. Ein Dauerauftrag am Monatsersten verschiebt automatisch. Bei 10.000 € Puffer macht der Unterschied zwischen 0 % und 4 % genau 400 € im Jahr — steuerpflichtig, aber real." },
+      { t: "stackcard", icon: "plane", title: "Stack 2 — Der Reise-Stack", x: "Hauptkonto bleibt, wo es ist. Dazu Revolut Standard für 0 €: vor der Reise Budget per Instant-Überweisung laden, werktags zum Interbank-nahen Kurs tauschen, vor Ort ohne Fremdwährungsaufschlag zahlen. Alternative für Gehaltsbezieher: gleich die DKB als Hauptkonto — mit Aktivstatus entfallen Auslandsgebühren komplett." },
+      { t: "stackcard", icon: "briefcase", title: "Stack 3 — Der Selbstständigen-Stack", x: "Privatkonto deiner Wahl plus bunq mit Sub-IBANs: eine IBAN für Einnahmen, ein Pocket „Umsatzsteuer“ (19 % jeder Rechnung sofort umbuchen), ein Pocket „Einkommensteuer-Rücklage“. Was im Einnahmen-Konto bleibt, ist wirklich deins." },
+      { t: "h2", x: "Drei Regeln für jeden Stack" },
+      { t: "list", items: ["Maximal zwei Konten — ab drei kippt Ordnung in Verwaltung.", "Automatisiere die Verschiebung per Dauerauftrag, sonst stirbt der Stack nach zwei Monaten.", "Prüfe einmal jährlich die Zinsen — variable Konditionen ändern sich, der kurze Check lohnt sich."] },
+      { t: "callout", icon: "trendingUp", label: "Rechenbeispiel", x: "10.000 € Sparpuffer bei 0 % (Hausbank) vs. 4 % (C24) = 400 € Zinsen pro Jahr. Der Stack kostet dich 0 € und einen Nachmittag Einrichtung." },
+    ],
+    related: ["zinsen-ohne-hopping", "reisekonto", "einlagensicherung-neobanken"],
+  },
+  "hauptkonto-wechseln": {
+    kicker: "Praxis", read: "5 Min",
+    title: "Hauptkonto wechseln 2026: In 12 Werktagen umgezogen",
+    blocks: [
+      { t: "lead", x: "Der Kontowechsel ist gesetzlich geregelt (§§ 20–26 ZKG): Der gesetzliche Wechselservice dauert maximal 12 Werktage." },
+      { t: "p", x: "In der Praxis übernehmen die Apps der Neobanken den Papierkram: Zahlungspartner informieren, Daueraufträge umziehen, altes Konto kündigen." },
+      { t: "h2", x: "Schritt für Schritt" },
+      { t: "steps", items: ["Neues Konto eröffnen (Video-Ident, 10–20 Min).", "Kontowechselservice in der App starten — er liest die letzten 12 Monate Umsätze und erkennt Arbeitgeber, Vermieter, Versicherungen, Abos.", "Gehaltseingang zuerst umstellen, dann Lastschriften.", "Altes Konto 2–3 Monate parallel laufen lassen als Auffangnetz für Jahreszahler (Kfz-Versicherung!).", "Altes Konto kündigen."] },
+      { t: "h2", x: "Die drei häufigsten Wechsel-Fallen" },
+      { t: "list", items: ["Jahreslastschriften, die erst in 9 Monaten kommen.", "Hinterlegte Karten in Payment-Diensten (PayPal, Apple Pay, Streaming).", "IBAN-Diskriminierung bei ausländischen IBANs (LT bei Revolut, NL bei bunq) — Arbeitgeber müssen jede SEPA-IBAN akzeptieren, manche Lohnbuchhaltung sträubt sich trotzdem."] },
+    ],
+    related: ["konto-stack", "neobank-oder-direktbank"],
+  },
+  "neobank-oder-direktbank": {
+    kicker: "Entscheidung", read: "7 Min",
+    title: "Neobank oder Direktbank? Der ehrliche Systemvergleich",
+    blocks: [
+      { t: "lead", x: "Die Frage ist nicht „alt gegen neu“, sondern: Welches Geschäftsmodell passt zu dir? Wir vergleichen entlang von fünf Dimensionen — und räumen mit zwei Mythen auf." },
+      { t: "h2", x: "1. Kostenlogik" },
+      { t: "p", x: "Neobanken sind meist bedingungslos kostenlos (N26, C24, Revolut, Tomorrow) und verdienen an Premium-Tarifen und Interchange. Klassiker wie DKB und ING knüpfen „kostenlos“ an Bedingungen — typischerweise 700 € Geldeingang pro Monat oder Alter unter 28. Wer die Bedingung reißt, zahlt bei der DKB 4,50 €/Monat." },
+      { t: "h2", x: "2. Funktionsumfang" },
+      { t: "p", x: "Pockets, Sub-IBANs, Echtzeit-Kategorisierung, In-App-Trading — hier sind Neobanken 2–3 Jahre voraus. Klassiker kontern mit Produktbreite: echter Dispo zu fairen Zinsen, Baufinanzierung, Gemeinschaftskonto als Standardprodukt." },
+      { t: "h2", x: "3. Bargeld & Karten" },
+      { t: "p", x: "DKB-Aktivkunden heben weltweit an Visa-Automaten gebührenfrei ab — das schlägt die Abhebe-Limits vieler Neobank-Gratistarife. Dafür fehlt Klassikern oft die granulare Kartensteuerung." },
+      { t: "h2", x: "4. Sicherheit" },
+      { t: "p", x: "Mythos 1 — „Neobanken sind unsicher“: N26, C24, bunq und Trade Republic haben Vollbanklizenzen mit gesetzlicher Einlagensicherung, genau wie DKB und ING. Die echte Trennlinie verläuft nicht zwischen alt und neu, sondern zwischen Bank und E-Geld-Institut." },
+      { t: "h2", x: "5. Support" },
+      { t: "p", x: "Mythos 2 — „Bei der Direktbank erreichst du Menschen“: Auch DKB und ING sind filiallos. Neobanken setzen auf Chat — mit großen Qualitätsunterschieden, die wir je Steckbrief testen." },
+      { t: "callout", icon: "scale", label: "Unsere Entscheidungsregel", x: "Regelmäßiges Gehalt über 700 € und Wunsch nach einem unaufgeregten Allround-Hauptkonto → Klassiker (DKB für Reisende, ING für Allrounder). Optimierung einzelner Disziplinen → Neobank. Beides? → Konto-Stack." },
+    ],
+    related: ["konto-stack", "einlagensicherung-neobanken"],
+  },
+  "einlagensicherung-neobanken": {
+    kicker: "Sicherheit", read: "6 Min",
+    title: "Einlagensicherung: Bank, E-Geld-Institut oder Partnerbank — der Unterschied, der zählt",
+    blocks: [
+      { t: "lead", x: "Die wichtigste Vertrauensfrage des Portals: Wo genau liegt dein Geld — und was passiert damit, wenn der Anbieter pleitegeht?" },
+      { t: "h2", x: "Die vier Modelle" },
+      { t: "table", rows: [["Modell", "Was es bedeutet"], ["Eigene Vollbanklizenz", "N26, C24, bunq, Trade Republic, DKB, ING → gesetzliche Sicherung bis 100.000 € je Kunde."], ["Partnerbank", "Tomorrow über Solaris → Sicherung läuft über die Partnerbank, Fintech ist die Oberfläche."], ["E-Geld-Institut", "Vivid → keine gesetzliche Einlagensicherung; Gelder werden getrennt verwahrt (Segregation)."], ["EU-Ausland", "Revolut (LT), bunq (NL), Openbank (ES) → gleiche 100.000-€-Grenze, anderes Sicherungsvermögen."]] },
+      { t: "p", x: "DKB und ING gehören zusätzlich freiwilligen bzw. erweiterten Sicherungssystemen ihrer Verbünde an — den Unterschied zwischen gesetzlich und freiwillig sollte man kennen." },
+      { t: "callout", icon: "users", label: "Gemeinschaftskonto", x: "Bei gemeinsamen Konten verdoppelt sich die Grenze: bis zu 200.000 € sind abgesichert (100.000 € je Inhaber)." },
+    ],
+    related: ["neobank-oder-direktbank", "konto-stack"],
+  },
+  "zinsen-ohne-hopping": {
+    kicker: "Geld", read: "4 Min",
+    title: "Guthabenzinsen 2026: 4 % ohne Tagesgeld-Hopping",
+    blocks: [
+      { t: "lead", x: "Tagesgeld-Hopping ist 2026 für die meisten unnötig geworden: Mehrere Neobanken verzinsen das Girokonto-Guthaben dauerhaft, teils ab dem ersten Euro." },
+      { t: "p", x: "Wie kommen die Zinsen zustande? Anker ist die EZB-Einlagenfazilität — die Zinsen sind also variabel. Und es gibt einen Unterschied zwischen „echten“ Guthabenzinsen und Geldmarktfonds-Konstruktionen (Trade Republic teilweise, Vivid-Pockets)." },
+      { t: "list", items: ["Freistellungsauftrag stellen, damit der Sparerpauschbetrag greift.", "Bei echten Guthabenzinsen gibt es keine Vorabpauschale.", "Variable Zinsen heißt: einmal jährlich prüfen."] },
+      { t: "callout", icon: "percent", label: "Rechenbeispiel-Modul (im Live-Produkt)", x: "Slider „Dein durchschnittliches Guthaben“ → Euro-Ertrag pro Jahr je Bank." },
+    ],
+    related: ["konto-stack", "einlagensicherung-neobanken"],
+  },
+  "reisekonto": {
+    kicker: "Reisen", read: "5 Min",
+    title: "Das beste Reisekonto 2026: Was eine Fernreise wirklich kostet",
+    blocks: [
+      { t: "lead", x: "Kernstück ist eine durchgerechnete 10-Tage-Reise (Thailand, 1.500 € Budget)." },
+      { t: "table", rows: [["Karte", "Kosten auf der Reise"], ["Hausbank-Kreditkarte", "1,75–3 % Fremdwährungsentgelt + 5–7,50 € je Abhebung"], ["Revolut / N26 / C24", "0 % Aufschlag werktags, geringe Restkosten"], ["DKB mit Aktivstatus", "weltweit gebührenfrei an Visa-Automaten"]] },
+      { t: "h2", x: "Die Fallen" },
+      { t: "list", items: ["Wochenend-Aufschläge bei Revolut.", "DCC-Falle am Automaten: „In Euro abrechnen?“ — immer ablehnen.", "Automatenbetreiber-Entgelte als Restkosten auch bei „gebührenfreien“ Karten.", "Backup-Karte ist Pflicht."] },
+    ],
+    related: ["konto-stack", "neobank-oder-direktbank"],
+  },
+  "konto-selbststaendige": {
+    kicker: "Business", read: "6 Min",
+    title: "Konto für Selbstständige: Privat trennen, Steuern parken, Belege exportieren",
+    blocks: [
+      { t: "lead", x: "Viele Neobanken-AGB erlauben geschäftliche Nutzung des Privatkontos nicht oder nur eingeschränkt — diese Rechtsfrage klären wir zuerst." },
+      { t: "h2", x: "Das Drei-Pocket-System" },
+      { t: "list", items: ["Einnahmen — alles, was reinkommt.", "Umsatzsteuer — 19 % jeder Rechnung sofort umbuchen.", "Einkommensteuer-Rücklage — Faustregel 30 %."] },
+      { t: "p", x: "Dann zählt der Export für die Steuerkanzlei: CSV/MT940-Vergleich je Anbieter. Und die Abgrenzung — ab wann lohnt ein echtes Geschäftskonto (Kontist, Qonto, Finom)?" },
+      { t: "callout", icon: "briefcase", label: "Empfehlung", x: "bunq mit Sub-IBANs bildet das Drei-Pocket-System sauber ab — siehe Selbstständigen-Stack im Konto-Stack-Ratgeber." },
+    ],
+    related: ["konto-stack", "einlagensicherung-neobanken"],
+  },
+  "nachhaltige-neobank": {
+    kicker: "Werte", read: "5 Min",
+    title: "Nachhaltige Neobank: Was dein Kontoguthaben anrichtet — oder bewirkt",
+    blocks: [
+      { t: "lead", x: "Einlagen sind nie „neutral geparkt“: Banken arbeiten mit dem Geld." },
+      { t: "p", x: "Wir erklären den Mechanismus, stellen Tomorrows Investitionskriterien vor, prüfen sie kritisch (Zertifizierungen, Impact-Reporting) und beziffern die „Haltungsprämie“ gegenüber der Zins-Spitze ehrlich in Euro/Jahr." },
+      { t: "callout", icon: "leaf", label: "Unsere kantige Pointe", x: "Wer Nachhaltigkeit priorisiert, bekommt bei Tomorrow ein sauberes Produkt. Wer nur ein grünes Feigenblatt will, sollte lieber konventionell banken und die Zinsdifferenz spenden." },
+    ],
+    related: ["konto-stack", "zinsen-ohne-hopping"],
+  },
+  "gemeinschaftskonto": {
+    kicker: "Teilen", read: "3 Min",
+    title: "Gemeinschaftskonto bei Neobanken: Drei Modelle, eine Empfehlung",
+    blocks: [
+      { t: "lead", x: "Kompakter Überblick statt Tiefenvergleich — denn das Thema gehört strategisch zu unserem Schwesterportal." },
+      { t: "stackcard", icon: "users", title: "1. Echtes Gemeinschaftskonto", x: "Beide Inhaber, beide haften — bei den Klassikern DKB und ING Standardprodukt, bei vielen Neobanken Fehlanzeige." },
+      { t: "stackcard", icon: "layers", title: "2. Drei-Konten-Modell", x: "Zwei Einzelkonten + gemeinsames Haushaltskonto — unsere Empfehlung für Paare." },
+      { t: "stackcard", icon: "briefcase", title: "3. Sub-Konto-Sharing", x: "bunq/N26 Spaces für WGs — geteilte Töpfe ohne volle Mithaftung." },
+    ],
+    related: ["konto-stack", "neobank-oder-direktbank"],
+  },
+};
+
+// ---- formatters ----
+export function eur(n: number): string {
+  return n === 0
+    ? "0,00 €"
+    : n.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+}
+
+export function pct(n: number): string {
+  return n.toLocaleString("de-DE", { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + " %";
+}
