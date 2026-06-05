@@ -38,7 +38,8 @@ export function SiteFooter() {
         <div className="flex flex-col md:flex-row justify-between gap-10">
           <div className="max-w-sm">
             <div className="text-[20px] font-bold" style={{ color: "var(--h-ink)" }}>
-              neoradar<span style={{ color: "var(--h-faint)" }}>.de</span>
+              neoradar<span style={{ color: "var(--h-ink)" }}>.</span>
+              <span style={{ color: "#c115b4" }}>de</span>
             </div>
             <p
               className="mt-4 text-[13.5px] leading-relaxed"

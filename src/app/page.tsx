@@ -35,7 +35,8 @@ function HomeHero() {
               <span style={{ color: "var(--h-ink)", fontWeight: 600 }}> „zwei Konten“</span> lautet,
               sagen wir auch das.
             </p>
-            <div className="mt-9 flex flex-wrap items-center gap-3">
+            {/* desktop: button below the text column */}
+            <div className="mt-9 hidden lg:flex flex-wrap items-center gap-3">
               <Btn kind="ghost" icon="arrowUpRight" href={hrefFor("vergleich")}>
                 Lieber selbst vergleichen
               </Btn>
@@ -43,6 +44,12 @@ function HomeHero() {
           </div>
           <div className="lg:pl-4">
             <KontoFinder />
+          </div>
+          {/* mobile: button below the finder card */}
+          <div className="flex lg:hidden flex-wrap items-center gap-3">
+            <Btn kind="ghost" icon="arrowUpRight" href={hrefFor("vergleich")}>
+              Lieber selbst vergleichen
+            </Btn>
           </div>
         </div>
       </Container>
