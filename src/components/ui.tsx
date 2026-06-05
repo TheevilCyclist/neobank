@@ -217,3 +217,44 @@ export function Disclaimer({
     </div>
   );
 }
+
+const ZINS_TEXT =
+  "Alle hier gezeigten Guthabenzinsen sind eine Momentaufnahme (Stand Juni 2026). Sie sind variabel, an die Marktlage (EZB-Einlagenfazilität) gekoppelt und können sich jederzeit ändern. Je nach Bank, Tarif, Aktionszeitraum, Guthabenhöhe und Produkt — Girokonto, Tagesgeld, Pocket oder Geldmarktfonds — fällt der tatsächliche Zins unterschiedlich aus. Maßgeblich sind ausschließlich die aktuellen Konditionen des jeweiligen Anbieters.";
+
+// Snapshot-disclaimer for interest rates. `prominent` (default) sits above the
+// comparison table; `subtle` is a quiet one-liner for other rate-bearing pages.
+export function ZinsDisclaimer({ variant = "prominent" }: { variant?: "prominent" | "subtle" }) {
+  if (variant === "subtle") {
+    return (
+      <p
+        className="flex items-start gap-2 font-mono text-[11px] leading-relaxed"
+        style={{ color: "var(--h-faint)" }}
+      >
+        <Icon name="activity" size={12} style={{ flexShrink: 0, marginTop: 2 }} />
+        Zinsangaben sind eine Momentaufnahme (Stand Juni 2026), variabel und je nach Bank, Tarif
+        und Produkt unterschiedlich — maßgeblich sind die aktuellen Konditionen des Anbieters.
+      </p>
+    );
+  }
+  return (
+    <div
+      className="rounded-2xl p-5 lg:p-6 flex gap-4"
+      style={{ background: "var(--h-tint)", border: "1px solid var(--h-accent-line)" }}
+    >
+      <span
+        className="grid place-items-center h-11 w-11 rounded-xl shrink-0"
+        style={{ background: "var(--h-accent-soft)", color: "var(--h-accent-ink)", border: "1px solid var(--h-accent-line)" }}
+      >
+        <Icon name="activity" size={21} />
+      </span>
+      <div>
+        <div className="text-[15.5px] font-bold" style={{ color: "var(--h-ink)" }}>
+          Zinsen sind nur eine Momentaufnahme
+        </div>
+        <p className="mt-1.5 text-[14px] leading-relaxed" style={{ color: "var(--h-muted)" }}>
+          {ZINS_TEXT}
+        </p>
+      </div>
+    </div>
+  );
+}

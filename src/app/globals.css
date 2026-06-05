@@ -5,7 +5,7 @@
   --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
 }
 
-/* ── neobank.de "Editorial Tech" design tokens ─────────────────────────────
+/* ── neoradar.de "Editorial Tech" design tokens ─────────────────────────────
    Baked from the prototype's default Tweaks (accent: Teal #0d9488,
    widget tone: Nachtblau). The original prototype set these at runtime via
    JS; here they live as static custom properties. */

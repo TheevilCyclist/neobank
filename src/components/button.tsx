@@ -54,6 +54,20 @@ export function Btn({
     </>
   );
   if (href) {
+    if (/^https?:\/\//.test(href)) {
+      return (
+        <a
+          href={href}
+          onClick={onClick}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className={BASE + " " + className}
+          style={style}
+        >
+          {inner}
+        </a>
+      );
+    }
     return (
       <Link href={href} onClick={onClick} className={BASE + " " + className} style={style}>
         {inner}

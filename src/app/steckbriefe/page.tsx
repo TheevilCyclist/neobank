@@ -5,12 +5,13 @@ import {
   Monogram,
   Stars,
   SicherungChip,
+  ZinsDisclaimer,
 } from "@/components/ui";
 import { BANKS, type Bank } from "@/lib/data";
 import { hrefFor } from "@/lib/routes";
 
 export const metadata = {
-  title: "Steckbriefe — Zehn Banken, zehn klare Winkel | neobank.de",
+  title: "Steckbriefe — Zehn Banken, zehn klare Winkel | neoradar.de",
 };
 
 function BankCard({ b }: { b: Bank }) {
@@ -87,6 +88,9 @@ export default function SteckbriefePage() {
           {klass.map((b) => (
             <BankCard key={b.id} b={b} />
           ))}
+        </div>
+        <div className="mt-10">
+          <ZinsDisclaimer variant="subtle" />
         </div>
       </Container>
     </section>

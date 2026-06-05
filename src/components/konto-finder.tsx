@@ -306,7 +306,7 @@ export function KontoFinder() {
         className="px-5 py-4 flex flex-col sm:flex-row gap-2.5 shrink-0"
         style={{ borderTop: "1px solid var(--h-line)" }}
       >
-        <Btn className="flex-1 justify-center" icon="arrowUpRight" href="#">
+        <Btn className="flex-1 justify-center" icon="arrowUpRight" href={BANK_BY_ID[r.primary].url}>
           Zum Anbieter
         </Btn>
         <Btn

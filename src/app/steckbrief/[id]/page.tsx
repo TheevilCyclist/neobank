@@ -14,8 +14,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const b = BANK_BY_ID[id];
-  if (!b) return { title: "Steckbrief | neobank.de" };
-  return { title: `${b.name} im Steckbrief — ${b.thesis} | neobank.de` };
+  if (!b) return { title: "Steckbrief | neoradar.de" };
+  return { title: `${b.name} im Steckbrief — ${b.thesis} | neoradar.de` };
 }
 
 export default async function SteckbriefPage({

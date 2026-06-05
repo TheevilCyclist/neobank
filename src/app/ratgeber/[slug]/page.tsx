@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Icon } from "@/components/icons";
-import { Container } from "@/components/ui";
+import { Container, ZinsDisclaimer } from "@/components/ui";
 import { BlockView } from "@/components/article-blocks";
 import { ARTICLES, RATGEBER } from "@/lib/data";
 
@@ -17,7 +17,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const a = ARTICLES[slug];
-  return { title: a ? `${a.title} | neobank.de` : "Ratgeber | neobank.de" };
+  return { title: a ? `${a.title} | neoradar.de` : "Ratgeber | neoradar.de" };
 }
 
 export default async function ArticlePage({
@@ -66,6 +66,11 @@ export default async function ArticlePage({
           {a.blocks.map((b, i) => (
             <BlockView key={i} b={b} />
           ))}
+          {["konto-stack", "zinsen-ohne-hopping"].includes(slug) && (
+            <div className="mt-8">
+              <ZinsDisclaimer variant="subtle" />
+            </div>
+          )}
           <div className="mt-10 font-mono text-[11px]" style={{ color: "var(--h-faint)" }}>
             Stand Juni 2026 · Alle Angaben ohne Gewähr · keine Anlageberatung.
           </div>

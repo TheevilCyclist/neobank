@@ -38,7 +38,7 @@ export function SiteFooter() {
         <div className="flex flex-col md:flex-row justify-between gap-10">
           <div className="max-w-sm">
             <div className="text-[20px] font-bold" style={{ color: "var(--h-ink)" }}>
-              neobank<span style={{ color: "var(--h-faint)" }}>.de</span>
+              neoradar<span style={{ color: "var(--h-faint)" }}>.de</span>
             </div>
             <p
               className="mt-4 text-[13.5px] leading-relaxed"
@@ -79,7 +79,7 @@ export function SiteFooter() {
           className="mt-12 pt-6 flex flex-col sm:flex-row justify-between gap-2 font-mono text-[11px]"
           style={{ borderTop: "1px solid var(--h-line)", color: "var(--h-faint)" }}
         >
-          <span>© 2026 neobank.de · Kein Bankprodukt, kein offizieller Anbieter.</span>
+          <span>© 2026 neoradar.de · Kein Bankprodukt, kein offizieller Anbieter.</span>
           <span>Alle Angaben ohne Gewähr · Beispieldaten · Stand Juni 2026</span>
         </div>
       </Container>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Container, PageHead } from "@/components/ui";
 
 export const metadata = {
-  title: "Datenschutz | neobank.de",
+  title: "Datenschutz | neoradar.de",
 };
 
 function Section({ n, title, children }: { n: number; title: string; children: React.ReactNode }) {

@@ -4,7 +4,7 @@ import { Container, PageHead } from "@/components/ui";
 import { RATGEBER } from "@/lib/data";
 
 export const metadata = {
-  title: "Ratgeber — Banking, nach Lebenssituation sortiert | neobank.de",
+  title: "Ratgeber — Banking, nach Lebenssituation sortiert | neoradar.de",
 };
 
 export default function RatgeberPage() {

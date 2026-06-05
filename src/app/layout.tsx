@@ -16,9 +16,9 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "neobank.de — Das unabhängige Vergleichsportal für digitale Banken",
+  title: "neoradar.de — Das unabhängige Vergleichsportal für digitale Banken",
   description:
-    "Der Konto-Finder von neobank.de: Beantworte 5 Fragen und finde unter 10 Neobanken und digitalen Klassikern das Konto, das zu deinem Leben passt. Unabhängig, ohne Anmeldung.",
+    "Der Konto-Finder von neoradar.de: Beantworte 5 Fragen und finde unter 10 Neobanken und digitalen Klassikern das Konto, das zu deinem Leben passt. Unabhängig, ohne Anmeldung.",
 };
 
 export default function RootLayout({

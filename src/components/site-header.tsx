@@ -46,7 +46,7 @@ export function SiteHeader() {
             className="text-[19px] font-bold tracking-tight"
             style={{ color: "var(--h-ink)" }}
           >
-            neobank<span style={{ color: "var(--h-faint)" }}>.de</span>
+            neoradar<span style={{ color: "var(--h-faint)" }}>.de</span>
           </Link>
           <nav className="hidden md:flex items-center gap-8 text-[14px] font-medium">
             {NAV.map((l) => {

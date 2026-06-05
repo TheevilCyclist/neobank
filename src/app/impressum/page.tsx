@@ -1,7 +1,7 @@
 import { Container, PageHead } from "@/components/ui";
 
 export const metadata = {
-  title: "Impressum | neobank.de",
+  title: "Impressum | neoradar.de",
 };
 
 function Address() {

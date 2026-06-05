@@ -1,4 +1,4 @@
-// neobank.de — Konto-Finder (5 Fragen → redaktionelle Empfehlung / Stack)
+// neoradar.de — Konto-Finder (5 Fragen → redaktionelle Empfehlung / Stack)
 import { BANK_BY_ID } from "./data";
 
 export interface FinderQuestion {
@@ -128,13 +128,13 @@ export function recommend(a: FinderAnswers): Recommendation {
       };
     }
     return {
-      mode: "single", primary: "c24", alt: "openbank",
+      mode: "single", primary: "trade-republic", alt: "c24",
       reasons: [
-        "Als Zweitkonto zum Sparen holt C24 das Maximum: bis zu 4 % aufs Guthaben, ohne separates Tagesgeldkonto.",
+        "Als Zweitkonto zum Sparen holt Trade Republic 2026 das Maximum: 3 % ab dem ersten Euro, ohne Limit und ohne separates Tagesgeldkonto.",
         "Ein Dauerauftrag schiebt deinen Sparpuffer automatisch hierher — der Rest bleibt auf deinem Hauptkonto.",
         "Deutsche Vollbanklizenz und gesetzliche Einlagensicherung machen es auch für größere Beträge solide.",
       ],
-      cantDo: "C24 bewegt sich im Check24-Ökosystem, das vom Querverkauf lebt — und die 4 % sind variabel, nicht garantiert.",
+      cantDo: "Ein Teil des Guthabens liegt unter Umständen in einem Geldmarktfonds — relevant für die Einlagensicherung; und der Zins ist variabel.",
     };
   }
 
@@ -150,7 +150,7 @@ export function recommend(a: FinderAnswers): Recommendation {
             ? "Gerade weil du ständig unterwegs bist, ist die DKB der unterschätzte Reise-Klassiker."
             : "Solides Banking ohne Überraschungen — der ruhige Anker fürs Gehalt.",
         ],
-        cantDo: "Beim Guthabenzins ist die DKB nur Mittelfeld — fürs Sparen lohnt später ein Zins-Zweitkonto wie C24.",
+        cantDo: "Beim Guthabenzins ist die DKB nur Mittelfeld — fürs Sparen lohnt später ein Zins-Zweitkonto wie Trade Republic oder ING.",
       };
     }
     return {
@@ -167,10 +167,10 @@ export function recommend(a: FinderAnswers): Recommendation {
   if (type === "optimierer") {
     if (travel === "staendig") {
       return {
-        mode: "stack", primary: "c24", second: "revolut", alt: "trade-republic", stackHint: "Zins-Hauptkonto + Reise-Modul",
+        mode: "stack", primary: "trade-republic", second: "revolut", alt: "ing", stackHint: "Zins-Hauptkonto + Reise-Modul",
         reasons: [
           "Du optimierst gern und bist viel unterwegs — ein einzelnes Konto kann beides selten. Deshalb ein Stack aus zwei Spezialisten.",
-          "C24 holt mit bis zu 4 % das Maximum aufs Guthaben, Revolut deckt Auslandszahlungen nahe Interbank ab.",
+          "Trade Republic holt mit 3 % ab dem ersten Euro das Maximum aufs Guthaben, Revolut deckt Auslandszahlungen nahe Interbank ab.",
           "Ein Dauerauftrag verbindet beide — du nutzt jeweils die Stärke, ohne Kompromiss.",
         ],
         cantDo: "Zwei Konten heißen zwei Apps — dafür bekommst du Spitzenzins und gebührenfreie Auslandszahlungen zugleich.",
@@ -179,13 +179,13 @@ export function recommend(a: FinderAnswers): Recommendation {
     return {
       mode: "single", primary: "c24", alt: "trade-republic",
       reasons: [
-        "Du optimierst gern — dann ist C24 dein Konto: bis zu 4 % aufs Girokonto, dazu Pockets und Cashback im Check24-Ökosystem.",
-        "Kein separates Tagesgeldkonto nötig, der Zins gilt direkt auf dem Guthaben.",
+        "Du optimierst gern — dann liefert C24 Pockets, Cashback und das Check24-Ökosystem zum Justieren.",
+        "Den Sparpuffer parkst du per Dauerauftrag, der Rest läuft im Alltag durchs Konto — Stärke sind hier Struktur und Cashback, nicht der Zins.",
         type === "optimierer" && income === "schwankend"
           ? "Ganz ohne Mindestgeldeingang — auch bei schwankendem Einkommen."
           : "Deutsche Vollbanklizenz inklusive — solide auch für größere Beträge.",
       ],
-      cantDo: "C24 lebt vom Querverkauf, und die 4 % sind variabel — fürs Reisen brauchst du zusätzlich ein Modul wie Revolut.",
+      cantDo: "C24 lebt vom Querverkauf, und der Guthabenzins ist mit 0,5 % mager — fürs Zins-Maximum schau auf Trade Republic oder ING.",
     };
   }
 
@@ -210,6 +210,6 @@ export function recommend(a: FinderAnswers): Recommendation {
         : "Gehalt rein, Push-Benachrichtigung, Spaces fürs Sparen — fertig.",
       "Deutsche Vollbanklizenz und gesetzliche Einlagensicherung bis 100.000 € inklusive.",
     ],
-    cantDo: "Wer das Maximum an Zinsen will, lässt bei N26 etwas liegen — bis 2,5 % statt 4 % bei C24.",
+    cantDo: "Wer Guthabenzins will, lässt bei N26 alles liegen — 0 % gegenüber bis zu 3,2 % beim Marktführer ING.",
   };
 }

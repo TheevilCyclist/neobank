@@ -1,7 +1,7 @@
 import { Container, PageHead, Disclaimer } from "@/components/ui";
 
 export const metadata = {
-  title: "Transparenz — Wovon wir leben, und wovon nicht | neobank.de",
+  title: "Transparenz — Wovon wir leben, und wovon nicht | neoradar.de",
 };
 
 export default function TransparenzPage() {
@@ -16,7 +16,7 @@ export default function TransparenzPage() {
         <PageHead
           kicker="Transparenz"
           title="Wovon wir leben — und wovon nicht."
-          lead="neobank.de finanziert sich über Affiliate-Links: Eröffnest du ein Konto über einen unserer Links, erhalten wir vom Anbieter eine Provision. Für dich ändert sich nichts — weder Preis noch Konditionen."
+          lead="neoradar.de finanziert sich über Affiliate-Links: Eröffnest du ein Konto über einen unserer Links, erhalten wir vom Anbieter eine Provision. Für dich ändert sich nichts — weder Preis noch Konditionen."
         />
       </Container>
       <Container className="pb-20">

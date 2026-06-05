@@ -9,6 +9,7 @@ import {
   TypeChip,
   Stars,
   SicherungChip,
+  ZinsDisclaimer,
 } from "./ui";
 import { Btn } from "./button";
 import { BANK_BY_ID, SICHERUNG, eur, type Bank } from "@/lib/data";
@@ -102,7 +103,7 @@ export function SteckbriefView({ bank }: { bank: Bank }) {
               {b.intro}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Btn icon="arrowUpRight" href="#">
+              <Btn icon="arrowUpRight" href={b.url}>
                 Zum Anbieter
               </Btn>
               <Btn kind="ghost" icon="arrowRight" href={hrefFor("ratgeber-konto-stack")}>
@@ -148,6 +149,9 @@ export function SteckbriefView({ bank }: { bank: Bank }) {
                   </span>
                 </div>
               ))}
+            </div>
+            <div className="mt-5 pt-4" style={{ borderTop: "1px solid var(--h-line)" }}>
+              <ZinsDisclaimer variant="subtle" />
             </div>
           </div>
         </div>
@@ -317,7 +321,7 @@ export function SteckbriefView({ bank }: { bank: Bank }) {
           Passt {b.name} zu deinem Leben?
         </h2>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Btn icon="arrowUpRight" href="#">
+          <Btn icon="arrowUpRight" href={b.url}>
             Zum Anbieter
           </Btn>
           <Btn kind="ghost" href={hrefFor("vergleich")}>

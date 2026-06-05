@@ -153,7 +153,7 @@ function TrustBlock() {
 
 function StackTeaser() {
   const stacks: [string, string, "percent" | "plane" | "briefcase"][] = [
-    ["Zins-Stack", "N26 / Trade Republic + C24", "percent"],
+    ["Zins-Stack", "N26 + Trade Republic / ING", "percent"],
     ["Reise-Stack", "Hauptkonto + Revolut", "plane"],
     ["Selbstständigen-Stack", "Privatkonto + bunq", "briefcase"],
   ];

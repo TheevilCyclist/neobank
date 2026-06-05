@@ -12,6 +12,7 @@ import {
   Badge,
   SicherungChip,
   Disclaimer,
+  ZinsDisclaimer,
 } from "./ui";
 import { BANKS, FILTERS, eur } from "@/lib/data";
 import { hrefFor } from "@/lib/routes";
@@ -108,6 +109,9 @@ export function VergleichView() {
         />
       </Container>
       <Container className="pb-20">
+        <div className="mb-6">
+          <ZinsDisclaimer />
+        </div>
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
           <FilterTabs active={active} onChange={setActive} counts={counts} />
           <div

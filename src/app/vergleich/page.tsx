@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { VergleichView } from "@/components/vergleich-view";
 
 export const metadata = {
-  title: "Vergleich — Zehn Banken, ein ehrlicher Blick | neobank.de",
+  title: "Vergleich — Zehn Banken, ein ehrlicher Blick | neoradar.de",
 };
 
 export default function VergleichPage() {
