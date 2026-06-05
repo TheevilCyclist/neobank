@@ -25,6 +25,8 @@ const COLS: [string, [string, string][]][] = [
     [
       ["Transparenz", "/transparenz"],
       ["Über uns", "/ueber-uns"],
+      ["Impressum", "/impressum"],
+      ["Datenschutz", "/datenschutz"],
     ],
   ],
 ];
