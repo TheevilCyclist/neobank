@@ -3,6 +3,8 @@ import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { CookieBanner } from "@/components/cookie-banner";
+import { GoogleAnalytics } from "@/components/google-analytics";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -35,6 +37,8 @@ export default function RootLayout({
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <CookieBanner />
+        <GoogleAnalytics />
       </body>
     </html>
   );

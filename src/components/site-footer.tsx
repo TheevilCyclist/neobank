@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "./ui";
+import { CookieSettingsButton } from "./cookie-banner";
 
 const COLS: [string, [string, string][]][] = [
   [
@@ -71,6 +72,11 @@ export function SiteFooter() {
                       </Link>
                     </li>
                   ))}
+                  {h === "Portal" && (
+                    <li>
+                      <CookieSettingsButton />
+                    </li>
+                  )}
                 </ul>
               </div>
             ))}
