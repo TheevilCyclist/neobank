@@ -50,11 +50,11 @@ export default function ImpressumPage() {
               <div className="text-[15px] leading-relaxed" style={{ color: "var(--h-muted)" }}>
                 E-Mail:{" "}
                 <a
-                  href="mailto:marcus.kuehne1982@gmail.com"
+                  href="mailto:marcus.kuehne@t-online.de"
                   className="font-medium underline underline-offset-2 transition-opacity hover:opacity-60"
                   style={{ color: "var(--h-accent-ink)" }}
                 >
-                  marcus.kuehne1982@gmail.com
+                  marcus.kuehne@t-online.de
                 </a>
               </div>
             </Block>
