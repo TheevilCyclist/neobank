@@ -1,4 +1,5 @@
 import { Icon } from "./icons";
+import { ZinsRechner } from "./zins-rechner";
 import type { Block } from "@/lib/data";
 
 export function BlockView({ b }: { b: Block }) {
@@ -87,6 +88,75 @@ export function BlockView({ b }: { b: Block }) {
           <p className="text-[15.5px] leading-relaxed" style={{ color: "var(--h-muted)" }}>
             {b.x}
           </p>
+        </div>
+      );
+    case "keyvals":
+      return (
+        <div className="mt-6 rounded-2xl p-6" style={{ background: "var(--h-card)", border: "1px solid var(--h-line)" }}>
+          <div className="flex items-center gap-3 mb-4">
+            {b.icon && (
+              <span
+                className="grid place-items-center h-10 w-10 rounded-xl shrink-0"
+                style={{ background: "var(--h-accent-soft)", color: "var(--h-accent-ink)" }}
+              >
+                <Icon name={b.icon} size={19} />
+              </span>
+            )}
+            <h3 className="text-[18px] font-bold" style={{ color: "var(--h-ink)" }}>
+              {b.title}
+            </h3>
+          </div>
+          <dl className="space-y-3">
+            {b.rows.map((r, i) => (
+              <div key={i}>
+                <dt className="text-[13.5px] font-bold" style={{ color: "var(--h-ink)" }}>
+                  {r[0]}
+                </dt>
+                <dd className="text-[14.5px] leading-relaxed mt-0.5" style={{ color: "var(--h-muted)" }}>
+                  {r[1]}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      );
+    case "zinsrechner":
+      return <ZinsRechner embedded />;
+    case "coltable":
+      return (
+        <div className="mt-8 rounded-2xl overflow-hidden" style={{ border: "1px solid var(--h-line)" }}>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-[14px]" style={{ minWidth: 460 }}>
+              <thead>
+                <tr style={{ background: "var(--h-tint)" }}>
+                  {b.head.map((h, i) => (
+                    <th
+                      key={i}
+                      className="text-left font-semibold px-4 py-3 whitespace-nowrap"
+                      style={{ color: "var(--h-faint)", borderBottom: "1px solid var(--h-line)" }}
+                    >
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {b.rows.map((r, ri) => (
+                  <tr key={ri} style={{ borderTop: ri ? "1px solid var(--h-line)" : "none", background: "var(--h-card)" }}>
+                    {r.map((c, ci) => (
+                      <td
+                        key={ci}
+                        className={"px-4 py-3 whitespace-nowrap " + (ci === 0 ? "font-semibold" : "font-mono tabular-nums")}
+                        style={{ color: ci === 0 ? "var(--h-ink)" : c.includes("−") ? "#b4452f" : "var(--h-muted)" }}
+                      >
+                        {c}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       );
     case "table":

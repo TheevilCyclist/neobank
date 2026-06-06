@@ -3,6 +3,7 @@ import { Icon } from "@/components/icons";
 import { Container, Eyebrow, LiveDot } from "@/components/ui";
 import { Btn } from "@/components/button";
 import { KontoFinder } from "@/components/konto-finder";
+import { ZinsRechner } from "@/components/zins-rechner";
 import { USECASES } from "@/lib/data";
 import { hrefFor } from "@/lib/routes";
 
@@ -230,6 +231,7 @@ export default function HomePage() {
   return (
     <>
       <HomeHero />
+      <ZinsRechner />
       <UseCases />
       <TrustBlock />
       <StackTeaser />

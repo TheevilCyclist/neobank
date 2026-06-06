@@ -117,7 +117,7 @@ export const BANKS: Bank[] = [
   {
     id: "c24", url: "https://www.c24.de/", name: "C24", mono: "C", typ: "Neobank", tarif: "Smart", fee: 0, feeNote: "dauerhaft kostenlos",
     rate: 0.5, rateLabel: "bis 0,5 %", blurb: "Cashback im Check24-Ökosystem", highlight: "Check24-Ökosystem", hero: true,
-    rating: 4.7, sicherung: "de_voll", cats: ["neobanken", "unterkonten", "lizenz"],
+    rating: 4.7, sicherung: "de_voll", cats: ["neobanken", "unterkonten", "lizenz", "gemeinschaft"],
     thesis: "Das Check24-Konto: Cashback statt Spitzenzins.",
     intro: "Der Guthabenzins ist 2026 auf 0,5 % gefallen, die einstige Zins-Krone ist weg. Was bleibt, ist das Check24-Ökosystem mit Pockets und Cashback. Der Preis: Du bewegst dich in einem Kosmos, der vom Querverkauf lebt. Wir zeigen, wie du die Vorteile mitnimmst, ohne Vertrags-Upselling mitzukaufen.",
     forWhom: ["Check24-Nutzer", "Pockets-Sparer", "Cashback-Jäger"],
@@ -276,10 +276,10 @@ export const RATGEBER: RatgeberMeta[] = [
   { id: "hauptkonto-wechseln", kicker: "Praxis", title: "Hauptkonto wechseln 2026", teaser: "In 12 Werktagen umgezogen, so läuft's wirklich.", read: "5 Min" },
   { id: "neobank-oder-direktbank", kicker: "Entscheidung", title: "Neobank oder Direktbank?", teaser: "Der ehrliche Systemvergleich entlang fünf Dimensionen.", read: "7 Min" },
   { id: "zinsen-ohne-hopping", kicker: "Geld", title: "Guthabenzinsen 2026", teaser: "Bis 3,2 % ohne Tagesgeld-Hopping, wie das geht.", read: "4 Min" },
-  { id: "reisekonto", kicker: "Reisen", title: "Das beste Reisekonto 2026", teaser: "Was eine Fernreise wirklich kostet.", read: "5 Min" },
-  { id: "konto-selbststaendige", kicker: "Business", title: "Konto für Selbstständige", teaser: "Privat trennen, Steuern parken, Belege exportieren.", read: "6 Min" },
-  { id: "nachhaltige-neobank", kicker: "Werte", title: "Nachhaltige Neobank", teaser: "Was dein Kontoguthaben anrichtet oder bewirkt.", read: "5 Min" },
-  { id: "gemeinschaftskonto", kicker: "Teilen", title: "Gemeinschaftskonto", teaser: "Drei Modelle, eine Empfehlung.", read: "3 Min" },
+  { id: "reisekonto", kicker: "Reisen", title: "Das beste Reisekonto 2026", teaser: "Was eine Fernreise wirklich kostet.", read: "7 Min" },
+  { id: "konto-selbststaendige", kicker: "Business", title: "Konto für Selbstständige", teaser: "Privat trennen, Steuern parken, Belege exportieren.", read: "8 Min" },
+  { id: "nachhaltige-neobank", kicker: "Werte", title: "Nachhaltige Neobank", teaser: "Was dein Kontoguthaben anrichtet oder bewirkt.", read: "7 Min" },
+  { id: "gemeinschaftskonto", kicker: "Teilen", title: "Gemeinschaftskonto", teaser: "Drei Modelle, eine Empfehlung.", read: "6 Min" },
   { id: "einlagensicherung-neobanken", kicker: "Sicherheit", title: "Einlagensicherung erklärt", teaser: "Bank, E-Geld-Institut oder Partnerbank, der Unterschied, der zählt.", read: "6 Min" },
 ];
 
@@ -292,7 +292,10 @@ export type Block =
   | { t: "steps"; items: string[] }
   | { t: "list"; items: string[] }
   | { t: "stackcard"; icon: IconName; title: string; x: string }
-  | { t: "table"; rows: [string, string][] };
+  | { t: "keyvals"; icon?: IconName; title: string; rows: [string, string][] }
+  | { t: "table"; rows: [string, string][] }
+  | { t: "coltable"; head: string[]; rows: string[][] }
+  | { t: "zinsrechner" };
 
 export interface Article {
   kicker: string;
@@ -369,23 +372,46 @@ export const ARTICLES: Record<string, Article> = {
       { t: "lead", x: "Tagesgeld-Hopping ist 2026 für die meisten unnötig geworden: Mehrere Neobanken verzinsen das Girokonto-Guthaben dauerhaft, teils ab dem ersten Euro." },
       { t: "p", x: "Wie kommen die Zinsen zustande? Anker ist die EZB-Einlagenfazilität, die Zinsen sind also variabel. Und es gibt einen Unterschied zwischen „echten“ Guthabenzinsen und Geldmarktfonds-Konstruktionen (Trade Republic teilweise, Vivid-Pockets)." },
       { t: "list", items: ["Freistellungsauftrag stellen, damit der Sparerpauschbetrag greift.", "Bei echten Guthabenzinsen gibt es keine Vorabpauschale.", "Variable Zinsen heißt: einmal jährlich prüfen."] },
-      { t: "callout", icon: "percent", label: "Rechenbeispiel-Modul (im Live-Produkt)", x: "Slider „Dein durchschnittliches Guthaben“ → Euro-Ertrag pro Jahr je Bank." },
+      { t: "zinsrechner" },
     ],
     related: ["konto-stack", "einlagensicherung-neobanken"],
   },
   "reisekonto": {
-    kicker: "Reisen", read: "5 Min",
+    kicker: "Reisen", read: "7 Min",
     title: "Das beste Reisekonto 2026: Was eine Fernreise wirklich kostet",
     blocks: [
       { t: "lead", x: "Kernstück ist eine durchgerechnete 10-Tage-Reise (Thailand, 1.500 € Budget)." },
       { t: "table", rows: [["Karte", "Kosten auf der Reise"], ["Hausbank-Kreditkarte", "1,75–3 % Fremdwährungsentgelt + 5–7,50 € je Abhebung"], ["Revolut / N26 / C24", "0 % Aufschlag werktags, geringe Restkosten"], ["DKB mit Aktivstatus", "weltweit gebührenfrei an Visa-Automaten"]] },
       { t: "h2", x: "Die Fallen" },
       { t: "list", items: ["Wochenend-Aufschläge bei Revolut.", "DCC-Falle am Automaten: „In Euro abrechnen?“, immer ablehnen.", "Automatenbetreiber-Entgelte als Restkosten auch bei „gebührenfreien“ Karten.", "Backup-Karte ist Pflicht."] },
+      { t: "h2", x: "Das Drei-Konten-Modell für den Urlaub (Der Reise-Stack)" },
+      { t: "p", x: "Wer blind mit nur einer Karte abhebt, verliert. Ein echter Reise-Stack besteht aus zwei aktiven Karten und einer eisernen Reserve im Hotelsafe. Wenn dir am Strand von Phuket die Primärkarte gesperrt wird, weil das Betrugssystem der Bank fälschlicherweise anspringt, stehst du sonst ohne Bargeld da." },
+      { t: "keyvals", icon: "globe", title: "1. Das Schweizer Taschenmesser: Revolut (Standard)", rows: [
+        ["Einsatzzweck", "Jede alltägliche Zahlung im Restaurant, Supermarkt oder Tuk-Tuk."],
+        ["Vorteil", "Absolut unschlagbare Wechselkurse unter der Woche, ohne versteckte Aufschläge."],
+        ["Limit im Hinterkopf", "Denk an die 1.000-€-Grenze im Gratismodell für den kostenlosen Währungsumtausch. Alles darüber kostet 1 % Gebühr."],
+        ["Reise-Hack", "Tausche dein Wochenend-Budget (z. B. für Samstagsausflüge) schon am Freitagnachmittag in der App in Thailändische Baht (THB) um. So umgehst du den Wochenend-Aufschlag von 1 % komplett."],
+      ] },
+      { t: "keyvals", icon: "percent", title: "2. Der Bargeld-Automatenknacker: DKB (mit Aktivstatus) oder C24", rows: [
+        ["Einsatzzweck", "Reine Bargeldversorgung am Geldautomaten."],
+        ["Vorteil", "Von deutscher Seite komplett gebührenfrei beim Abheben. C24 erlaubt in den größeren Paketen bzw. als aktives Hauptkonto ebenfalls kostenlose Auslandsabhebungen."],
+        ["Die ATM-Falle", "Thailändische Banken verlangen standardmäßig 220 THB (ca. 6 €) Eigengebühr pro Abhebung, völlig egal, welche deutsche Karte du nutzt. Das erstattet dir heute keine Bank mehr."],
+        ["Die Lösung", "Hebe selten, dafür aber den Maximalbetrag (oft 20.000 THB) auf einmal ab, um die Fixgebühr prozentual zu minimieren."],
+      ] },
+      { t: "keyvals", icon: "lock", title: "3. Das Backup im Safe: Eine echte Kreditkarte (z. B. Barclays oder Hanseatic)", rows: [
+        ["Einsatzzweck", "Mietwagen-Kautionen und Hotel-Check-ins."],
+        ["Warum Neobanken hier oft scheitern", "N26, Revolut und Co. bieten Debitkarten. Viele Autovermietungen im Ausland blocken den Kautionsbetrag (oft 1.000 €+) schlicht nicht auf einer Debitkarte, selbst wenn das Guthaben da ist. Ohne echte Kreditkarte („Credit“ auf der Vorderseite) gehst du am Mietwagenschalter leer aus."],
+      ] },
+      { t: "h2", x: "Fazit: Welches Konto sichert dir die Reise?" },
+      { t: "p", x: "Es gibt nicht die eine perfekte Karte für den Urlaub. Wer schlau ist, kombiniert die Stärken." },
+      { t: "p", x: "Wenn du reiner App-Nutzer bist und deine Finanzen unterwegs in Echtzeit tracken willst, ist das Gespann aus C24 (für den Alltag) und Revolut (für den exakten Währungstausch unter der Woche) deine Basis." },
+      { t: "p", x: "Geht es dir primär um Mietwagen und maximale Akzeptanz abseits der typischen Backpacker-Routen, gehört eine dauerhaft gebührenfreie, echte Kreditkarte als Sicherheitsnetz zwingend ins Gepäck." },
+      { t: "callout", icon: "shieldCheck", label: "Transparenz-Check", x: "Alle hier genannten Konten lassen sich in wenigen Minuten komplett digital und ohne Papierkram vom Sofa aus eröffnen. Die Basis-Modelle sind dauerhaft kostenlos, du zahlst also nur, was du auf der Reise wirklich verbrauchst." },
     ],
     related: ["konto-stack", "neobank-oder-direktbank"],
   },
   "konto-selbststaendige": {
-    kicker: "Business", read: "6 Min",
+    kicker: "Business", read: "8 Min",
     title: "Konto für Selbstständige: Privat trennen, Steuern parken, Belege exportieren",
     blocks: [
       { t: "lead", x: "Viele Neobanken-AGB erlauben geschäftliche Nutzung des Privatkontos nicht oder nur eingeschränkt, diese Rechtsfrage klären wir zuerst." },
@@ -393,27 +419,96 @@ export const ARTICLES: Record<string, Article> = {
       { t: "list", items: ["Einnahmen, alles, was reinkommt.", "Umsatzsteuer, 19 % jeder Rechnung sofort umbuchen.", "Einkommensteuer-Rücklage, Faustregel 30 %."] },
       { t: "p", x: "Dann zählt der Export für die Steuerkanzlei: CSV/MT940-Vergleich je Anbieter. Und die Abgrenzung, ab wann lohnt ein echtes Geschäftskonto (Kontist, Qonto, Finom)?" },
       { t: "callout", icon: "briefcase", label: "Empfehlung", x: "bunq mit Sub-IBANs bildet das Drei-Pocket-System sauber ab, siehe Selbstständigen-Stack im Konto-Stack-Ratgeber." },
+      { t: "h2", x: "Wann reicht das smarte Unterkonten-System nicht mehr? (Die harte Grenze)" },
+      { t: "p", x: "Solange du als Einzelunternehmer oder Freelancer (Freiberufler) auf eigene Rechnung agierst, ist die Trennung über smarte Unterkonten und Sub-IBANs (wie bei bunq oder C24 Business) rechtlich völlig legitim und extrem effizient." },
+      { t: "p", x: "Es gibt jedoch genau drei harte Mauern, bei denen dieses Setup einstürzt:" },
+      { t: "keyvals", icon: "shieldAlert", title: "Die drei harten Grenzen", rows: [
+        ["Die Rechtsform verlangt es", "Sobald du eine UG oder GmbH gründest, ist die Firma eine eigene juristische Person. Du musst zwingend ein echtes Geschäftskonto auf den Firmennamen eröffnen. Ein privates Konto mit „Sub-IBAN für die Firma“ führt hier geradewegs in das Visier der Compliance-Abteilung."],
+        ["Der Steuerberater streikt", "Wenn deine Buchhaltung wächst und du Belege per DATEV-Schnittstelle automatisiert übertragen musst, stoßen viele klassische Neobanken an ihre Grenzen."],
+        ["Schufa-Trennung", "Jedes normale Girokonto (auch viele Business-Ableger für Einzelunternehmer) wird in deine private Schufa eingetragen. Echte B2B-Firmenkonten laufen komplett isoliert auf das Unternehmen."],
+      ] },
+      { t: "h2", x: "Die Aufsteiger-Klasse: Kontist, Qonto und Finom im Direktvergleich" },
+      { t: "p", x: "Wenn du merkst, dass dein Business die klassischen Taschen- und Pocket-Modelle sprengt, kommen die spezialisierten B2B-Anbieter ins Spiel. Sie kosten zwar eine monatliche Grundgebühr, sparen dir aber Stunden an Lebenszeit bei der Buchhaltung." },
+      { t: "keyvals", icon: "zap", title: "1. Kontist: Der automatisierte Steuerhelfer", rows: [
+        ["Für wen", "Solo-Selbstständige und Freelancer, die ihre Buchhaltung hassen."],
+        ["Das Killer-Feature", "Kontist berechnet bei jedem Geldeingang vollautomatisch deine voraussichtliche Einkommen- und Umsatzsteuer und schiebt sie virtuell beiseite. Durch die direkte Lexoffice- oder SevDesk-Integration schreibt sich die Buchhaltung fast von selbst."],
+      ] },
+      { t: "keyvals", icon: "fileText", title: "2. Finom: Der Rechnungs-Turbo", rows: [
+        ["Für wen", "Dienstleister und Agenturen, die viele Kundenrechnungen schreiben müssen."],
+        ["Das Killer-Feature", "Du kannst Rechnungen direkt im Banking-Dashboard erstellen. Finom überwacht den Geldeingang und gleicht offene Posten automatisch ab. Dazu gibt es extrem hohe Cashback-Raten auf Kartenzahlungen in den Business-Tarifen."],
+      ] },
+      { t: "keyvals", icon: "users", title: "3. Qonto: Für wachsende Teams", rows: [
+        ["Für wen", "Gründer mit UG/GmbH oder Teams, die Unterkarten für Mitarbeiter brauchen."],
+        ["Das Killer-Feature", "Volle DATEV-Kompatibilität und ein extrem mächtiges Rechtemanagement. Du kannst deinem Steuerberater einen eigenen Lesezugriff einrichten, damit er sich die Kontoauszüge und Belege selbst zieht, ohne dass du PDFs exportieren musst."],
+      ] },
+      { t: "callout", icon: "scale", label: "Der ehrliche neoradar-Tipp", x: "Starte am ersten Tag deiner Selbstständigkeit nicht direkt mit dem teuersten GmbH-Konto. Wenn du als Freelancer startest, nimm ein kostenloses oder günstiges Modell mit Sub-IBANs (wie bunq), um deine Steuern sauber zu parken. Sobald die Umsätze stabil fünfstellig werden oder Mitarbeiter dazukommen, ziehst du den Stecker und wechselst sauber zu einem vollwertigen Buchhaltungs-Konto wie Kontist oder Qonto." },
     ],
     related: ["konto-stack", "einlagensicherung-neobanken"],
   },
   "nachhaltige-neobank": {
-    kicker: "Werte", read: "5 Min",
+    kicker: "Werte", read: "7 Min",
     title: "Nachhaltige Neobank: Was dein Kontoguthaben anrichtet oder bewirkt",
     blocks: [
       { t: "lead", x: "Einlagen sind nie „neutral geparkt“: Banken arbeiten mit dem Geld." },
       { t: "p", x: "Wir erklären den Mechanismus, stellen Tomorrows Investitionskriterien vor, prüfen sie kritisch (Zertifizierungen, Impact-Reporting) und beziffern die „Haltungsprämie“ gegenüber der Zins-Spitze ehrlich in Euro/Jahr." },
       { t: "callout", icon: "leaf", label: "Unsere kantige Pointe", x: "Wer Nachhaltigkeit priorisiert, bekommt bei Tomorrow ein sauberes Produkt. Wer nur ein grünes Feigenblatt will, sollte lieber konventionell banken und die Zinsdifferenz spenden." },
+      { t: "h2", x: "Der Tomorrow-Check: Wo landet dein Geld wirklich?" },
+      { t: "p", x: "Konventionelle Banken nutzen dein Sparguthaben im Hintergrund als Deckung für Kredite. Wo diese hinfließen, entscheidest du nicht, oft sind es fossile Energien, Rüstung oder die Tabakindustrie." },
+      { t: "p", x: "Tomorrow (Partnerbank ist die Solaris SE) filtert diese Industrien über ein strenges Negativ- und Positiv-Schnittmuster (nach den UN Sustainable Development Goals)." },
+      { t: "keyvals", icon: "leaf", title: "So filtert Tomorrow", rows: [
+        ["Die Blockliste", "Keine Kohle, keine Waffen, keine Gentechnik, keine Tierversuche."],
+        ["Das Impact-Investment", "Dein Geld fließt stattdessen aktiv in grüne Anleihen (Social & Green Bonds). Damit werden konkrete Projekte finanziert, vom Ausbau von Solarparks in Europa bis hin zu regionalen Trinkwasserprojekten."],
+        ["Das Kontrollorgan", "Ein unabhängiger „Impact Council“ prüft jeden einzelnen Investment-Case. Über das monatliche Impact Reporting in der App ist das für dich komplett einsehbar."],
+      ] },
+      { t: "h2", x: "Die „Haltungsprämie“: Was dich dein Gewissen in Euro kostet" },
+      { t: "p", x: "Machen wir die ehrliche neoradar-Rechnung auf. Stand Juni 2026 bietet die Zins-Spitze (ING) rund 3,2 % aufs Tagesgeld bzw. Girokonto, Trade Republic 3,0 % (siehe unser Zins-Ratgeber). Tomorrow verzinst das Guthaben mit 2,5 % p. a., also bewusst etwas unterhalb der Spitze." },
+      { t: "p", x: "Wenn du 10.000 € auf dem Konto parkst, sieht die jährliche Realität so aus:" },
+      { t: "coltable", head: ["Bank / Setup", "Zinssatz", "Ertrag pro Jahr", "Kosten für den „Impact“"], rows: [
+        ["Zins-Spitze (ING)", "3,2 %", "320,00 €", "0 €"],
+        ["Tomorrow", "2,5 %", "250,00 €", "−70,00 €"],
+      ] },
+      { t: "h2", x: "Das ehrliche Fazit: Wie nachhaltig bist du wirklich?" },
+      { t: "p", x: "Diese Differenz von rund 70 € im Jahr nennen wir die Haltungsprämie. Du verzichtest auf einen Teil der Rendite, damit im Hintergrund kein Unfug mit deinem Geld getrieben wird." },
+      { t: "keyvals", icon: "scale", title: "Lohnt sich die Prämie für dich?", rows: [
+        ["Wann Tomorrow Sinn ergibt", "Wenn du den Komfort eines modernen Smartphone-Kontos willst und dir sicher sein willst, dass dein Geld, während es auf dem Konto liegt, keinen Schaden anrichtet."],
+        ["Wann das „Feigenblatt“ greift", "Wenn dich die 70 € Zinsdifferenz eigentlich schmerzen. Dann fährst du finanziell und oft auch moralisch besser, wenn du dein Geld bei der Zins-Spitze (z. B. ING) parkst, die vollen 320 € einsackst und davon am Jahresende einen festen Betrag direkt an ein Klimaprojekt deiner Wahl spendest. Du hast mehr Geld in der Tasche und die Spende kommt direkter an."],
+      ] },
     ],
     related: ["konto-stack", "zinsen-ohne-hopping"],
   },
   "gemeinschaftskonto": {
-    kicker: "Teilen", read: "3 Min",
+    kicker: "Teilen", read: "6 Min",
     title: "Gemeinschaftskonto bei Neobanken: Drei Modelle, eine Empfehlung",
     blocks: [
-      { t: "lead", x: "Kompakter Überblick statt Tiefenvergleich, denn das Thema gehört strategisch zu unserem Schwesterportal." },
-      { t: "stackcard", icon: "users", title: "1. Echtes Gemeinschaftskonto", x: "Beide Inhaber, beide haften, bei den Klassikern DKB und ING Standardprodukt, bei vielen Neobanken Fehlanzeige." },
-      { t: "stackcard", icon: "layers", title: "2. Drei-Konten-Modell", x: "Zwei Einzelkonten + gemeinsames Haushaltskonto, unsere Empfehlung für Paare." },
-      { t: "stackcard", icon: "briefcase", title: "3. Sub-Konto-Sharing", x: "bunq/N26 Spaces für WGs, geteilte Töpfe ohne volle Mithaftung." },
+      { t: "lead", x: "Echtes Gemeinschaftskonto, Drei-Konten-Modell oder Sub-Konto-Sharing? Wir nehmen die drei Wege im Härtetest auseinander, inklusive der Steuerfalle, die kaum ein Vergleichsportal erwähnt." },
+      { t: "h2", x: "Die drei Modelle im Härtetest: Welches passt zu euch?" },
+      { t: "keyvals", icon: "users", title: "1. Das echte Gemeinschaftskonto (Oder-Konto)", rows: [
+        ["Prinzip", "Das Konto gehört juristisch beiden Partnern zu gleichen Teilen (50/50). Jeder bekommt eine eigene Karte und vollen App-Zugriff."],
+        ["Wer bietet es", "C24 Bank (kostenlos im Smart-Tarif), DKB, ING. Bei reinen Neobanken wie N26 oder Revolut sucht man ein echtes Gemeinschaftskonto mit zwei rechtlichen Inhabern oft vergeblich, oder es ist an teurere Abos gekoppelt."],
+        ["Der große Vorteil", "Maximale rechtliche Sicherheit. Stirbt ein Partner, wird das Konto nicht sofort gesperrt, der andere kann weiter über das Geld verfügen."],
+        ["Das Risiko (Haftung)", "Ihr haftet gesamtschuldnerisch. Überzieht dein Partner das Konto komplett, kann die Bank das Geld zu 100 % von dir zurückfordern. Zudem löst die Eröffnung bei beiden Partnern eine Schufa-Abfrage aus."],
+      ] },
+      { t: "keyvals", icon: "layers", title: "2. Das Drei-Konten-Modell (Der Klassiker für Paare)", rows: [
+        ["Prinzip", "Beide Partner behalten ihr eigenes, privates Girokonto für Gehalt und persönliche Ausgaben. Zusätzlich läuft ein drittes Konto (das Gemeinschaftskonto), auf das beide per Dauerauftrag einen fixen Betrag für Miete, Einkäufe und Fixkosten überweisen."],
+        ["Der neoradar-Tipp", "Nutzt eine Bank, die Echtzeitüberweisungen (Instant Payment) kostenlos anbietet. So schiebt ihr beim gemeinsamen Wocheneinkauf in Sekunden Geld aufs Haushaltskonto, falls es mal knapp wird."],
+        ["Vorteil", "Absolute finanzielle Unabhängigkeit und null Streitpotenzial bei persönlichen Ausgaben (Hobbys, Geschenke)."],
+      ] },
+      { t: "keyvals", icon: "briefcase", title: "3. Sub-Konto-Sharing (Die moderne WG-Lösung)", rows: [
+        ["Prinzip", "Ein Partner eröffnet ein normales Einzelkonto und gibt über die App ein bestimmtes Unterkonto (Pocket/Space) für den anderen Partner oder die Mitbewohner frei."],
+        ["Wer bietet es", "bunq (Joint Pockets) oder N26 (Shared Spaces)."],
+        ["Der Haken", "Rechtlicher Inhaber des Geldes bleibt immer die Person, die das Hauptkonto eröffnet hat. Der andere Partner hat lediglich eine Vollmacht über dieses eine Pocket."],
+        ["Vorteil", "Extrem flexibel. Pockets lassen sich mit wenigen Klicks erstellen, teilen und wieder löschen, ohne Verträge oder Schufa-Abfragen. Perfekt für WGs oder unverheiratete Paare in der Kennenlernphase."],
+      ] },
+      { t: "h2", x: "Die unterschätzte Falle: Schenkungssteuer bei unverheirateten Paaren" },
+      { t: "p", x: "Ein Punkt, den fast alle Vergleichsportale verschweigen, weil er ungemütlich ist: die Schenkungssteuer." },
+      { t: "p", x: "Wenn ihr nicht verheiratet seid, liegt der steuerliche Freibetrag für Schenkungen untereinander bei gerade einmal 20.000 € innerhalb von 10 Jahren." },
+      { t: "p", x: "Das Problem in der Praxis: Ihr eröffnet ein echtes Gemeinschaftskonto (Modell 1). Ein Partner verdient deutlich mehr und zahlt jeden Monat 3.000 € ein, der andere nur 500 €. Rechtlich gehört das Guthaben beiden zu gleichen Teilen, also kann das Finanzamt die Differenz (die Hälfte der höheren Einzahlung) als Schenkung werten. Über die Jahre reißt man so den 20.000-€-Freibetrag extrem schnell." },
+      { t: "callout", icon: "scale", label: "Die Lösung", x: "Für unverheiratete Paare ist das Drei-Konten-Modell (Modell 2) die sauberste Option. Zahlt dort nur so viel ein, wie monatlich für die gemeinsamen Lebenshaltungskosten verbraucht wird, damit sich kein hohes, steuerlich relevantes Vermögen auf dem Gemeinschaftskonto anstaut." },
+      { t: "h2", x: "Der finale Radar-Check: So entscheidet ihr" },
+      { t: "keyvals", icon: "scale", title: "So entscheidet ihr", rows: [
+        ["Verheiratet oder gefestigte Partnerschaft", "Wählt ein echtes Gemeinschaftskonto bei C24, ING oder DKB als Haushaltsbasis (Modell 1 oder 2)."],
+        ["WG oder unverbindlich", "Nutzt das Sub-Konto-Sharing von bunq oder N26 (Modell 3), das spart euch den bürokratischen Aufwand und das Schufa-Risiko."],
+      ] },
     ],
     related: ["konto-stack", "neobank-oder-direktbank"],
   },
