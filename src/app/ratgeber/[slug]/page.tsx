@@ -66,7 +66,8 @@ export default async function ArticlePage({
           {a.blocks.map((b, i) => (
             <BlockView key={i} b={b} />
           ))}
-          {["konto-stack", "zinsen-ohne-hopping"].includes(slug) && (
+          {/* zinsen-ohne-hopping bringt den Disclaimer bereits im Zins-Rechner mit */}
+          {slug === "konto-stack" && (
             <div className="mt-8">
               <ZinsDisclaimer variant="subtle" />
             </div>
