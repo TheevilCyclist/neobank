@@ -21,6 +21,12 @@ export const metadata: Metadata = {
   title: "neoradar.de: Das unabhängige Vergleichsportal für digitale Banken",
   description:
     "Der Konto-Finder von neoradar.de: Beantworte 5 Fragen und finde unter 10 Neobanken und digitalen Klassikern das Konto, das zu deinem Leben passt. Unabhängig, ohne Anmeldung.",
+  // Google Search Console: Bei der "HTML-Tag"-Methode den exakten content-Wert
+  // aus der Search Console hier eintragen (er unterscheidet sich vom Token der
+  // HTML-Datei in /public/google21a1580a606fa3be.html).
+  verification: {
+    google: "21a1580a606fa3be",
+  },
 };
 
 export default function RootLayout({
