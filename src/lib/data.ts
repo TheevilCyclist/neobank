@@ -161,7 +161,7 @@ export const BANKS: Bank[] = [
     faq: [["Lohnt sich N26 Metal?", "Nur bei hohem Bargeld-/Reisebedarf, wir rechnen es im Steckbrief vor."], ["Gibt es ein Gemeinschaftskonto?", "Kein echtes; nur Spaces-Sharing zwischen Konten."], ["Wie hoch ist der Zins?", "Aktuell 0 % p. a., N26 verzinst das Guthaben derzeit nicht (Stand Juni 2026)."]],
   },
   {
-    id: "bunq", url: "https://www.bunq.com/de", name: "bunq", mono: "b", typ: "Neobank", tarif: "Easy Bank", fee: 3.99, feeNote: "pro Monat",
+    id: "bunq", url: "https://www.financeads.net/tc.php?t=84762C3156123233T", name: "bunq", mono: "b", typ: "Neobank", tarif: "Easy Bank", fee: 3.99, feeNote: "pro Monat",
     rate: 2.01, rateLabel: "bis 2,01 %", blurb: "Bis zu 25 Unterkonten mit eigener IBAN", highlight: "25 Sub-IBANs", hero: true,
     rating: 4.3, sicherung: "nl", cats: ["neobanken", "unterkonten", "premium", "gemeinschaft"],
     thesis: "25 IBANs: Das Konto als Ordnungssystem.",
