@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
@@ -40,13 +39,6 @@ export default function RootLayout({
       lang="de"
       className={`${jakarta.variable} ${ibmPlexMono.variable} h-full`}
     >
-      {/* Impact tracking / site verification. strategy="beforeInteractive"
-          must live in the root layout and is always injected into <head> of
-          the initial server HTML (next/script docs), which is what Impact's
-          verification crawler looks for on the homepage. */}
-      <Script id="impact-stat" strategy="beforeInteractive">
-        {`(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7391104-2d0b-4a69-991d-1c8f1ee4043f1.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');`}
-      </Script>
       <body className="min-h-full flex flex-col">
         <SiteHeader />
         <main className="flex-1">{children}</main>
