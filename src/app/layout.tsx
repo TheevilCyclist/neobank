@@ -39,6 +39,13 @@ export default function RootLayout({
       lang="de"
       className={`${jakarta.variable} ${ibmPlexMono.variable} h-full`}
     >
+      {/* Impact site verification — needs the non-standard `value` attribute,
+          which Next's metadata API can't emit (it renders `content`), so the
+          raw tag is rendered here and hoisted into <head> by React. */}
+      <meta
+        name="impact-site-verification"
+        value="c22399df-ea18-4277-9c15-9b995522c382"
+      />
       <body className="min-h-full flex flex-col">
         <SiteHeader />
         <main className="flex-1">{children}</main>
