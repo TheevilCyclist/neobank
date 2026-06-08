@@ -18,7 +18,8 @@ const COLS: [string, [string, string][]][] = [
       ["Konto-Stack", "/ratgeber/konto-stack"],
       ["Hauptkonto wechseln", "/ratgeber/hauptkonto-wechseln"],
       ["Neobank vs. Direktbank", "/ratgeber/neobank-oder-direktbank"],
-      ["Einlagensicherung", "/ratgeber/einlagensicherung-neobanken"],
+      // Vorerst ausgeblendet (Artikel noch unveröffentlicht):
+      // ["Einlagensicherung", "/ratgeber/einlagensicherung-neobanken"],
     ],
   ],
   [

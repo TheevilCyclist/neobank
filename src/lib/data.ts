@@ -72,8 +72,9 @@ export const NAV: { id: string; label: string }[] = [
 export const USECASES: UseCase[] = [
   { id: "wechseln", icon: "repeat", title: "Hauptkonto wechseln", sub: "In 12 Werktagen umgezogen", target: { view: "ratgeber-hauptkonto-wechseln" } },
   { id: "reisen", icon: "plane", title: "Viel unterwegs", sub: "0 % Fremdwährung, weltweit abheben", target: { view: "vergleich", filter: "reisen" } },
-  { id: "selbststaendig", icon: "briefcase", title: "Selbstständig", sub: "Sub-IBANs für Steuern & Rücklagen", target: { view: "ratgeber-konto-selbststaendige" } },
-  { id: "gemeinschaft", icon: "users", title: "Konto teilen", sub: "Modelle für Paare & WGs", target: { view: "ratgeber-gemeinschaftskonto" } },
+  // Vorerst ausgeblendet, da die zugehörigen Artikel noch unveröffentlicht sind:
+  // { id: "selbststaendig", icon: "briefcase", title: "Selbstständig", sub: "Sub-IBANs für Steuern & Rücklagen", target: { view: "ratgeber-konto-selbststaendige" } },
+  // { id: "gemeinschaft", icon: "users", title: "Konto teilen", sub: "Modelle für Paare & WGs", target: { view: "ratgeber-gemeinschaftskonto" } },
   { id: "nachhaltig", icon: "leaf", title: "Nachhaltig banken", sub: "Klimaneutrales Banking", target: { view: "ratgeber-nachhaltige-neobank" } },
   { id: "system", icon: "scale", title: "Fintech oder etablierte Bank?", sub: "Neobank vs. DKB, ING & Co.", target: { view: "ratgeber-neobank-oder-direktbank" } },
   { id: "zinsen", icon: "percent", title: "Sparen & Zinsen", sub: "Guthabenzinsen im Vergleich", target: { view: "vergleich", filter: "zinsen" } },
@@ -276,11 +277,11 @@ export const RATGEBER: RatgeberMeta[] = [
   { id: "hauptkonto-wechseln", kicker: "Praxis", title: "Hauptkonto wechseln 2026", teaser: "In 12 Werktagen umgezogen, so läuft's wirklich.", read: "5 Min" },
   { id: "neobank-oder-direktbank", kicker: "Entscheidung", title: "Neobank oder Direktbank?", teaser: "Der ehrliche Systemvergleich entlang fünf Dimensionen.", read: "7 Min" },
   { id: "zinsen-ohne-hopping", kicker: "Geld", title: "Guthabenzinsen 2026", teaser: "Bis 3,2 % ohne Tagesgeld-Hopping, wie das geht.", read: "4 Min" },
-  { id: "reisekonto", kicker: "Reisen", title: "Das beste Reisekonto 2026", teaser: "Was eine Fernreise wirklich kostet.", read: "7 Min" },
-  { id: "konto-selbststaendige", kicker: "Business", title: "Konto für Selbstständige", teaser: "Privat trennen, Steuern parken, Belege exportieren.", read: "8 Min" },
+  // { id: "reisekonto", kicker: "Reisen", title: "Das beste Reisekonto 2026", teaser: "Was eine Fernreise wirklich kostet.", read: "7 Min" },
+  // { id: "konto-selbststaendige", kicker: "Business", title: "Konto für Selbstständige", teaser: "Privat trennen, Steuern parken, Belege exportieren.", read: "8 Min" },
   { id: "nachhaltige-neobank", kicker: "Werte", title: "Nachhaltige Neobank", teaser: "Was dein Kontoguthaben anrichtet oder bewirkt.", read: "7 Min" },
-  { id: "gemeinschaftskonto", kicker: "Teilen", title: "Gemeinschaftskonto", teaser: "Drei Modelle, eine Empfehlung.", read: "6 Min" },
-  { id: "einlagensicherung-neobanken", kicker: "Sicherheit", title: "Einlagensicherung erklärt", teaser: "Bank, E-Geld-Institut oder Partnerbank, der Unterschied, der zählt.", read: "6 Min" },
+  // { id: "gemeinschaftskonto", kicker: "Teilen", title: "Gemeinschaftskonto", teaser: "Drei Modelle, eine Empfehlung.", read: "6 Min" },
+  // { id: "einlagensicherung-neobanken", kicker: "Sicherheit", title: "Einlagensicherung erklärt", teaser: "Bank, E-Geld-Institut oder Partnerbank, der Unterschied, der zählt.", read: "6 Min" },
 ];
 
 // ---- Ratgeber-Artikel (block content) ----
@@ -353,7 +354,7 @@ export const ARTICLES: Record<string, Article> = {
     ],
     related: ["konto-stack", "einlagensicherung-neobanken"],
   },
-  "einlagensicherung-neobanken": {
+/*   "einlagensicherung-neobanken": {
     kicker: "Sicherheit", read: "6 Min",
     title: "Einlagensicherung: Bank, E-Geld-Institut oder Partnerbank, der Unterschied, der zählt",
     blocks: [
@@ -364,7 +365,7 @@ export const ARTICLES: Record<string, Article> = {
       { t: "callout", icon: "users", label: "Gemeinschaftskonto", x: "Bei gemeinsamen Konten verdoppelt sich die Grenze: bis zu 200.000 € sind abgesichert (100.000 € je Inhaber)." },
     ],
     related: ["neobank-oder-direktbank", "konto-stack"],
-  },
+  }, */
   "zinsen-ohne-hopping": {
     kicker: "Geld", read: "4 Min",
     title: "Guthabenzinsen 2026: Bis 3,2 % ohne Tagesgeld-Hopping",
@@ -376,7 +377,7 @@ export const ARTICLES: Record<string, Article> = {
     ],
     related: ["konto-stack", "einlagensicherung-neobanken"],
   },
-  "reisekonto": {
+/*   "reisekonto": {
     kicker: "Reisen", read: "7 Min",
     title: "Das beste Reisekonto 2026: Was eine Fernreise wirklich kostet",
     blocks: [
@@ -409,8 +410,8 @@ export const ARTICLES: Record<string, Article> = {
       { t: "callout", icon: "shieldCheck", label: "Transparenz-Check", x: "Alle hier genannten Konten lassen sich in wenigen Minuten komplett digital und ohne Papierkram vom Sofa aus eröffnen. Die Basis-Modelle sind dauerhaft kostenlos, du zahlst also nur, was du auf der Reise wirklich verbrauchst." },
     ],
     related: ["konto-stack", "neobank-oder-direktbank"],
-  },
-  "konto-selbststaendige": {
+  }, */
+/*   "konto-selbststaendige": {
     kicker: "Business", read: "8 Min",
     title: "Konto für Selbstständige: Privat trennen, Steuern parken, Belege exportieren",
     blocks: [
@@ -444,7 +445,7 @@ export const ARTICLES: Record<string, Article> = {
       { t: "callout", icon: "scale", label: "Der ehrliche neoradar-Tipp", x: "Starte am ersten Tag deiner Selbstständigkeit nicht direkt mit dem teuersten GmbH-Konto. Wenn du als Freelancer startest, nimm ein kostenloses oder günstiges Modell mit Sub-IBANs (wie bunq), um deine Steuern sauber zu parken. Sobald die Umsätze stabil fünfstellig werden oder Mitarbeiter dazukommen, ziehst du den Stecker und wechselst sauber zu einem vollwertigen Buchhaltungs-Konto wie Kontist oder Qonto." },
     ],
     related: ["konto-stack", "einlagensicherung-neobanken"],
-  },
+  }, */
   "nachhaltige-neobank": {
     kicker: "Werte", read: "7 Min",
     title: "Nachhaltige Neobank: Was dein Kontoguthaben anrichtet oder bewirkt",
@@ -476,7 +477,7 @@ export const ARTICLES: Record<string, Article> = {
     ],
     related: ["konto-stack", "zinsen-ohne-hopping"],
   },
-  "gemeinschaftskonto": {
+/*   "gemeinschaftskonto": {
     kicker: "Teilen", read: "6 Min",
     title: "Gemeinschaftskonto bei Neobanken: Drei Modelle, eine Empfehlung",
     blocks: [
@@ -511,7 +512,7 @@ export const ARTICLES: Record<string, Article> = {
       ] },
     ],
     related: ["konto-stack", "neobank-oder-direktbank"],
-  },
+  }, */
 };
 
 // ---- formatters ----

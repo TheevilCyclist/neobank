@@ -239,15 +239,8 @@ export function VergleichView() {
             ist ein{" "}
             <strong style={{ color: "var(--h-ink)" }}>
               E-Geld-Institut ohne gesetzliche Einlagensicherung
-            </strong>{" "}
-           , Kundengelder werden getrennt verwahrt, das ist aber nicht dasselbe.{" "}
-            <Link
-              href={hrefFor("ratgeber-einlagensicherung-neobanken")}
-              className="font-semibold underline underline-offset-2"
-              style={{ color: "var(--h-accent-ink)" }}
-            >
-              Details im Ratgeber
-            </Link>
+            </strong>
+            , Kundengelder werden getrennt verwahrt, das ist aber nicht dasselbe.
           </Disclaimer>
         </div>
         <div className="mt-4 font-mono text-[11px]" style={{ color: "var(--h-faint)" }}>

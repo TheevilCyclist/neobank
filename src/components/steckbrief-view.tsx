@@ -227,16 +227,8 @@ export function SteckbriefView({ bank }: { bank: Bank }) {
             </div>
           </div>
           <p className="text-[15.5px] leading-relaxed self-center" style={{ color: "var(--h-muted)" }}>
-            {SICHERUNG[b.sicherung].note}. Was die einzelnen Sicherungsmodelle im Insolvenzfall
-            praktisch bedeuten, erklären wir nüchtern im{" "}
-            <Link
-              href={hrefFor("ratgeber-einlagensicherung-neobanken")}
-              className="font-semibold underline underline-offset-2"
-              style={{ color: "var(--h-accent-ink)" }}
-            >
-              Einlagensicherungs-Ratgeber
-            </Link>
-            .
+            {SICHERUNG[b.sicherung].note}. Die Unterschiede der einzelnen Sicherungsmodelle und
+            was sie im Insolvenzfall praktisch bedeuten, ordnen wir pro Anbieter transparent ein.
           </p>
         </div>
       </Container>
