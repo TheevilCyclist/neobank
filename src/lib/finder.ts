@@ -73,7 +73,7 @@ export function recommend(a: FinderAnswers): Recommendation {
         `Dein Privates läuft sauber getrennt über ${B(main).name}, so vermischen sich geschäftliche und private Buchungen nie.`,
         "Am Monatsende liegt auf dem Einnahmen-Konto nur das, was nach Steuer-Pocket wirklich dir gehört.",
       ],
-      cantDo: "bunq kostet 3,99 €/Monat und ersetzt kein vollwertiges Geschäftskonto (Kontist, Qonto), für Freiberufler reicht es meist, für eine GmbH nicht.",
+      cantDo: "bunq Free ist zwar kostenlos, ersetzt aber kein vollwertiges Geschäftskonto (Kontist, Qonto), für Freiberufler reicht es meist, für eine GmbH nicht.",
     };
   }
 
