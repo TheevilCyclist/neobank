@@ -103,7 +103,7 @@ export function SteckbriefView({ bank }: { bank: Bank }) {
               {b.intro}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Btn icon="arrowUpRight" href={b.url}>
+              <Btn icon="arrowUpRight" href={hrefFor("go", { id: b.id })}>
                 Zum Anbieter
               </Btn>
               <Btn kind="ghost" icon="arrowRight" href={hrefFor("ratgeber-konto-stack")}>
@@ -313,7 +313,7 @@ export function SteckbriefView({ bank }: { bank: Bank }) {
           Passt {b.name} zu deinem Leben?
         </h2>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Btn icon="arrowUpRight" href={b.url}>
+          <Btn icon="arrowUpRight" href={hrefFor("go", { id: b.id })}>
             Zum Anbieter
           </Btn>
           <Btn kind="ghost" href={hrefFor("vergleich")}>

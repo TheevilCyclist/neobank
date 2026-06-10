@@ -15,6 +15,8 @@ export function hrefFor(
       return "/steckbriefe";
     case "steckbrief":
       return params?.id ? `/steckbrief/${params.id}` : "/steckbriefe";
+    case "go":
+      return params?.id ? `/go/${params.id}` : "/";
     case "ratgeber":
       return "/ratgeber";
     case "transparenz":

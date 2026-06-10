@@ -54,7 +54,11 @@ export function Btn({
     </>
   );
   if (href) {
-    if (/^https?:\/\//.test(href)) {
+    // External providers and first-party affiliate redirects (/go/<id>) render
+    // as a plain anchor: real top-level navigation, opens in a new tab, no Link
+    // prefetch (which would trigger the redirect). The /go/ path keeps the
+    // affiliate target out of the DOM so ad blockers don't strip the button.
+    if (/^https?:\/\//.test(href) || href.startsWith("/go/")) {
       return (
         <a
           href={href}
