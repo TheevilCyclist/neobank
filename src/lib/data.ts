@@ -206,7 +206,7 @@ export const BANKS: Bank[] = [
     faq: [["Ist Vivid eine Bank?", "Nein, ein E-Geld-Institut. Gelder werden getrennt verwahrt, es gibt keine gesetzliche Einlagensicherung."], ["Wie funktioniert der Zins?", "Über Geldmarktfonds-Pockets, der Basis-Guthabenzins ist niedrig."], ["Für wen lohnt sich Vivid?", "Für aktive Nutzer mit Cashback- und Trading-Interesse."]],
   },
   {
-    id: "tomorrow", url: "https://www.tomorrow.one/", name: "Tomorrow", mono: "T", typ: "Neobank", tarif: "Now", fee: 0, feeNote: "dauerhaft kostenlos",
+    id: "tomorrow", url: "https://www.financeads.net/tc.php?t=84762C313858148T", name: "Tomorrow", mono: "T", typ: "Neobank", tarif: "Now", fee: 0, feeNote: "dauerhaft kostenlos",
     rate: 2.5, rateLabel: "bis 2,5 %", blurb: "Klimaneutrales Banking aus Hamburg", highlight: "Klimaneutral", hero: false,
     rating: 4.2, sicherung: "partner", cats: ["neobanken"],
     thesis: "Was „nachhaltige Bank“ konkret heißt und was es kostet.",
@@ -221,7 +221,7 @@ export const BANKS: Bank[] = [
     faq: [["Wie nachhaltig ist Tomorrow wirklich?", "Einlagen werden nach eigenen Kriterien investiert; wir prüfen Zertifizierungen kritisch."], ["Wer sichert mein Geld?", "Die Partnerbank Solaris, bis 100.000 €."], ["Was kostet die Nachhaltigkeit?", "Die Zinsdifferenz zur Spitze, im Steckbrief in Euro/Jahr beziffert."]],
   },
   {
-    id: "dkb", url: "https://www.dkb.de/", name: "DKB", mono: "D", typ: "Klassiker", tarif: "Girokonto", fee: 0, feeNote: "mit Aktivstatus", feeCond: "ab 700 € Geldeingang/Monat, sonst 4,50 €/Monat",
+    id: "dkb", url: "https://www.financeads.net/tc.php?t=84762C103122891T", name: "DKB", mono: "D", typ: "Klassiker", tarif: "Girokonto", fee: 0, feeNote: "mit Aktivstatus", feeCond: "ab 700 € Geldeingang/Monat, sonst 4,50 €/Monat",
     rate: 1.0, rateLabel: "Tagesgeld 1,0 %", blurb: "Reise-Klassiker mit Aktivstatus", highlight: "Reise-Klassiker", hero: false,
     rating: 4.3, sicherung: "de_plus", cats: ["klassiker", "reisen", "lizenz", "gemeinschaft"],
     thesis: "Der Klassiker, der wie eine Neobank rechnet, wenn du Aktivkunde bist.",
