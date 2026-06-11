@@ -87,7 +87,7 @@ export function SiteFooter() {
           style={{ borderTop: "1px solid var(--h-line)", color: "var(--h-faint)" }}
         >
           <span>© 2026 neoradar.de · Kein Bankprodukt, kein offizieller Anbieter.</span>
-          <span>Alle Angaben ohne Gewähr · Beispieldaten · Stand Juni 2026</span>
+          <span>Alle Angaben ohne Gewähr · Stand Juni 2026</span>
         </div>
       </Container>
     </footer>
